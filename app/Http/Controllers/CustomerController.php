@@ -16,7 +16,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('backend.pages.customer.customerManagement');
+        return view('backend.customer.index');
     }
     public function customerReport(){
        $customer = payment::whereIn('paid_status', ['Full paid', 'partial_paid'])->get();

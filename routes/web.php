@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +37,7 @@ Auth::routes();
 //
 //});
 //product
-Route::get('/product', [ProductController::class, 'index.blade.php'])->name('product.index.blade.php');
+Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/barcode', [ProductController::class, 'getProductCode'])->name('product.barcode');
 
 Route::post('/post-product', [ProductController::class, 'store']);
@@ -53,7 +55,7 @@ Route::put('/update-unit/{id}', [UnitController::class, 'update']);
 Route::delete('/delete-unit/{id}', [UnitController::class, 'destroy']);
 
 //category
-Route::get('/category', [CategoryController::class, 'index.blade.php'])->name('category.index.blade.php');
+Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
 Route::post('/post-category', [CategoryController::class, 'store']);
 Route::get('/fetch-category', [CategoryController::class, 'fetchCategory']);
 Route::get('/edit-category/{id}', [CategoryController::class, 'edit']);

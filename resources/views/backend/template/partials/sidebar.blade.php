@@ -27,38 +27,38 @@
         <div class="collapse " id="pagesExamples">
             <ul class="nav">
 
-                <li >
+                <li  class="{{ Route::currentRouteNamed('supplier.index') ? 'active' : '' }}" >
                     <a href="{{route('supplier.index')}}">
                         <span class="sidebar-mini-icon">SM</span>
                         <span class="sidebar-normal">Supplier Management</span>
                     </a>
                 </li>
 
-                <li >
+                <li  class="{{ Route::currentRouteNamed('customer.index') ? 'active' : '' }}" >
                     <a href="{{route('customer.index')}}">
                         <span class="sidebar-mini-icon">CM</span>
                         <span class="sidebar-normal"> Customer Management</span>
                     </a>
                 </li>
 
-                <li >
+                <li class="{{ Route::currentRouteNamed('unit.index') ? 'active' : '' }}" >
                     <a href="{{route('unit.index')}}">
                         <span class="sidebar-mini-icon">UM</span>
                         <span class="sidebar-normal">Unit Management</span>
                     </a>
                 </li>
 
-                <li >
-                    <a href="pages/timeline.html">
-                        <span class="sidebar-mini-icon">T</span>
-                        <span class="sidebar-normal"> Timeline </span>
+                <li class="{{ Route::currentRouteNamed('category.index') ? 'active' : '' }} ">
+                    <a href="{{route('category.index')}}">
+                        <span class="sidebar-mini-icon">CM</span>
+                        <span class="sidebar-normal">Category Mangement</span>
                     </a>
                 </li>
 
-                <li >
-                    <a href="pages/login.html">
-                        <span class="sidebar-mini-icon">L</span>
-                        <span class="sidebar-normal"> Login </span>
+                <li class="{{ Route::currentRouteNamed('product.index') ? 'active' : '' }}" >
+                    <a href="{{route('product.index')}}">
+                        <span class="sidebar-mini-icon">PM</span>
+                        <span class="sidebar-normal">Product Management</span>
                     </a>
                 </li>
 

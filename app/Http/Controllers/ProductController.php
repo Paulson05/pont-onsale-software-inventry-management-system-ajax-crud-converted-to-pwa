@@ -17,7 +17,7 @@ class ProductController extends Controller
         $products =   Product::with(array('category'=>function($query){
             $query->select('id','name');
         }))->get();
-        return view('backend.pages.product.index.blade.php')->with([
+        return view('backend.product.index')->with([
             'products' => $products,
         ]);
     }
