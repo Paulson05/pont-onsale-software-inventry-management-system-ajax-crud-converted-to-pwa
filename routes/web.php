@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +45,7 @@ Route::put('/update-product/{id}', [ProductController::class, 'update']);
 Route::delete('/delete-product/{id}', [ProductController::class, 'destroy']);
 
 //unit
-Route::get('/unit', [UnitController::class, 'index.blade.php'])->name('unit.index.blade.php');
+Route::get('/unit', [UnitController::class, 'index'])->name('unit.index');
 Route::post('/post-unit', [UnitController::class, 'store']);
 Route::get('/fetch-unit', [UnitController::class, 'fetchUnit']);
 Route::get('/edit-unit/{id}', [UnitController::class, 'edit']);
@@ -60,7 +62,7 @@ Route::delete('/delete-category/{id}', [CategoryController::class, 'destroy']);
 
 
 //supplier
- Route::resource('supplier',SupplierController::class)->except('create');
+ Route::resource('/supplier',SupplierController::class)->except('create');
 
 Route::post('/post-supplier', [SupplierController::class, 'store']);
 Route::get('/fetchsupplier', [SupplierController::class, 'fetchsupplier']);
@@ -69,7 +71,8 @@ Route::put('/update-product/{id}', [SupplierController::class, 'update']);
 Route::delete('/delete-supplier/{id}', [SupplierController::class, 'destroy']);
 
 //customer
-Route::get('/customer', [CustomerController::class, 'index.blade.php'])->name('customer.index.blade.php');
+Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+
 Route::post('/post-customer', [CustomerController::class, 'store']);
 Route::get('/fetchcustomer', [CustomerController::class, 'fetchcustomer']);
 

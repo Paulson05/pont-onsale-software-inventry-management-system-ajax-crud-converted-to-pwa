@@ -29,22 +29,22 @@
 
                 <li >
                     <a href="{{route('supplier.index')}}">
-                        <span class="sidebar-mini-icon">S</span>
-                        <span class="sidebar-normal">Supplier</span>
+                        <span class="sidebar-mini-icon">SM</span>
+                        <span class="sidebar-normal">Supplier Management</span>
                     </a>
                 </li>
 
                 <li >
-                    <a href="pages/rtl.html">
-                        <span class="sidebar-mini-icon">RS</span>
-                        <span class="sidebar-normal"> RTL Support </span>
+                    <a href="{{route('customer.index')}}">
+                        <span class="sidebar-mini-icon">CM</span>
+                        <span class="sidebar-normal"> Customer Management</span>
                     </a>
                 </li>
 
                 <li >
-                    <a href="pages/invoice.html">
-                        <span class="sidebar-mini-icon">I</span>
-                        <span class="sidebar-normal"> Invoice </span>
+                    <a href="{{route('unit.index')}}">
+                        <span class="sidebar-mini-icon">UM</span>
+                        <span class="sidebar-normal">Unit Management</span>
                     </a>
                 </li>
 

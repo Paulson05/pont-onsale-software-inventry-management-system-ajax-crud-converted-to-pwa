@@ -16,7 +16,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        return view ('backend.pages.unitManagement');
+        return view ('backend.unit.index');
     }
 
     /**
