@@ -28,9 +28,9 @@
             <ul class="nav">
 
                 <li >
-                    <a href="pages/pricing.html">
-                        <span class="sidebar-mini-icon">P</span>
-                        <span class="sidebar-normal"> Pricing </span>
+                    <a href="{{route('supplier.index')}}">
+                        <span class="sidebar-mini-icon">S</span>
+                        <span class="sidebar-normal">Supplier</span>
                     </a>
                 </li>
 

@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class SupplierController extends Controller
@@ -17,7 +15,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return view('backend.pages.supplierManagement');
+        return view('backend.supplier.index');
     }
 
     /**
@@ -29,7 +27,6 @@ class SupplierController extends Controller
     {
         //
     }
-
 
     public function store(Request $request)
     {
@@ -64,19 +61,23 @@ class SupplierController extends Controller
 
 
     }
-
-public function fetchproduct(){
-    $suppliers = Supplier::all();
-    return response()->json([
-        'suppliers'=>$suppliers,
-    ]);
-}
-
-    public function show(Supplier $supplier)
-    {
-
+    public function fetchSupplier(){
+        $suppliers = Supplier::all();
+        return response()->json([
+            'suppliers'=>$suppliers,
+        ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
     public function edit($id)
     {

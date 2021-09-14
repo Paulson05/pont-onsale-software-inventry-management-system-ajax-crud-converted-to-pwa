@@ -32,7 +32,7 @@ class InvoiceController extends Controller
         }
         $data['customers'] = Customer::all();
         $data['date'] = date('y-m-d');
-        return view('backend.pages.invoice.index', $data);
+        return view('backend.pages.invoice.index.blade.php', $data);
     }
     public function invoiceList(){
         return view('backend.pages.invoice.invoice-list');
@@ -113,7 +113,7 @@ class InvoiceController extends Controller
                 });
             }
         }
-        return redirect()->route('invoice.index');
+        return redirect()->route('invoice.index.blade.php');
     }
 
     public function approve($id){
@@ -148,7 +148,7 @@ class InvoiceController extends Controller
            }
            $invoice->save();
        });
-       return redirect()->route('invoice.index')->with('succcess', 'successfully approved');
+       return redirect()->route('invoice.index.blade.php')->with('succcess', 'successfully approved');
    }
 
    public function printInvoiceList(){

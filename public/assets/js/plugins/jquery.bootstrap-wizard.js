@@ -234,7 +234,7 @@ var bootstrapWizardCreate = function(element, options) {
 	};
 
 	var innerTabClick = function (e) {
-		// Get the index of the clicked tab
+		// Get the index.blade.php of the clicked tab
 		var $ul = $navigation.find(baseItemSelector);
 		var clickedIndex = $ul.index($(e.currentTarget).parent(baseItemSelector));
 		var $clickedTab = $( $ul[clickedIndex] );

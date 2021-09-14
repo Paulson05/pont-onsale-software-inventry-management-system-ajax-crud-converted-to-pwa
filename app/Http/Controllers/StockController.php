@@ -9,7 +9,7 @@ class StockController extends Controller
 {
     public function stockReport(){
         $products = Product::orderBy('suppliers_id', 'asc')->orderBy('category_id', 'asc')->get();
-        return view('backend.pages.stock.index')->with([
+        return view('backend.pages.stock.index.blade.php')->with([
             'products' => $products,
         ]);
     }

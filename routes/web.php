@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,17 +23,17 @@ Route::get('/', function () {
 })->name('loginpage');
 Auth::routes();
 
-oute::get('/qr-code-g', function () {
-
-    \QrCode::size(500)
-        ->format('png')
-        ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
-
-    return view('qrcode.index');
-
-});
+//Route::get('/qr-code-g', function () {
+//
+//    \QrCode::size(500)
+//        ->format('png')
+//        ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
+//
+//    return view('qrcode.index.blade.php');
+//
+//});
 //product
-Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+Route::get('/product', [ProductController::class, 'index.blade.php'])->name('product.index.blade.php');
 Route::get('/product/barcode', [ProductController::class, 'getProductCode'])->name('product.barcode');
 
 Route::post('/post-product', [ProductController::class, 'store']);
@@ -42,7 +43,7 @@ Route::put('/update-product/{id}', [ProductController::class, 'update']);
 Route::delete('/delete-product/{id}', [ProductController::class, 'destroy']);
 
 //unit
-Route::get('/unit', [UnitController::class, 'index'])->name('unit.index');
+Route::get('/unit', [UnitController::class, 'index.blade.php'])->name('unit.index.blade.php');
 Route::post('/post-unit', [UnitController::class, 'store']);
 Route::get('/fetch-unit', [UnitController::class, 'fetchUnit']);
 Route::get('/edit-unit/{id}', [UnitController::class, 'edit']);
@@ -50,7 +51,7 @@ Route::put('/update-unit/{id}', [UnitController::class, 'update']);
 Route::delete('/delete-unit/{id}', [UnitController::class, 'destroy']);
 
 //category
-Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/category', [CategoryController::class, 'index.blade.php'])->name('category.index.blade.php');
 Route::post('/post-category', [CategoryController::class, 'store']);
 Route::get('/fetch-category', [CategoryController::class, 'fetchCategory']);
 Route::get('/edit-category/{id}', [CategoryController::class, 'edit']);
@@ -59,15 +60,16 @@ Route::delete('/delete-category/{id}', [CategoryController::class, 'destroy']);
 
 
 //supplier
-Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.index');
+ Route::resource('supplier',SupplierController::class)->except('create');
+
 Route::post('/post-supplier', [SupplierController::class, 'store']);
-Route::get('/fetchproduct', [SupplierController::class, 'fetchproduct']);
+Route::get('/fetchsupplier', [SupplierController::class, 'fetchsupplier']);
 Route::get('/edit-supplier/{id}', [SupplierController::class, 'edit']);
 Route::put('/update-product/{id}', [SupplierController::class, 'update']);
 Route::delete('/delete-supplier/{id}', [SupplierController::class, 'destroy']);
 
 //customer
-Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+Route::get('/customer', [CustomerController::class, 'index.blade.php'])->name('customer.index.blade.php');
 Route::post('/post-customer', [CustomerController::class, 'store']);
 Route::get('/fetchcustomer', [CustomerController::class, 'fetchcustomer']);
 
@@ -87,7 +89,7 @@ Route::get('/customer-wise-paid/pdf', [CustomerController::class, 'customerWiseP
 //purchase
 
 
-Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase.index');
+Route::get('/purchase', [PurchaseController::class, 'index.blade.php'])->name('purchase.index.blade.php');
 Route::post('/post-purchase', [PurchaseController::class, 'store']);
 Route::get('/fetchpurchase', [PurchaseController::class, 'fetchpurchase']);
 Route::get('/edit-purchase/{id}', [PurchaseController::class, 'edit']);
@@ -101,7 +103,7 @@ Route::get('/daily/purchase/report', [PurchaseController::class, 'dailyPurchaseR
 Route::get('/purchase/daily-report/pdf', [PurchaseController::class, 'DailyPurchasePdf'])->name('daily.purchase.report.pdf');
 
 // invoice
-Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
+Route::get('/invoice', [InvoiceController::class, 'index.blade.php'])->name('invoice.index.blade.php');
 Route::get('/invoice/pending', [InvoiceController::class, 'invoiceList'])->name('invoice.list');
 //Route::get('/invoiceapproval', [InvoiceController::class, 'pendingList'])->name('invoicepending.list');
 

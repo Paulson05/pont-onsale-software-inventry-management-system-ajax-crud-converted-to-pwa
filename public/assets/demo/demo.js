@@ -1164,11 +1164,11 @@ demo = {
             step_width = move_distance;
             move_distance = move_distance * index_temp;
 
-            // $current = index + 1;
+            // $current = index.blade.php + 1;
             //
-            // if($current == 1 || (mobile_device == true && (index % 2 == 0) )){
+            // if($current == 1 || (mobile_device == true && (index.blade.php % 2 == 0) )){
                 // move_distance -= 8;
-            // } else if($current == total_steps || (mobile_device == true && (index % 2 == 1))){
+            // } else if($current == total_steps || (mobile_device == true && (index.blade.php % 2 == 1))){
             //     move_distance += 8;
             // }
 
