@@ -11,7 +11,6 @@
             </nav>
             <div class="row">
                 <div class="col-md-12 text-right">
-                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#addModal">add</button>
                     <div  class="modal  fade pt-5" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
