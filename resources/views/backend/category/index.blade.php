@@ -25,13 +25,12 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <ul class="pl-3 text-center list-unstyled" id="saveform_errList"></ul>
-                                    <div class="text-center" id="success_message"></div>
 
 
 
                                     <div class="row">
 
-                                        <div class="col-xs-12 col-sm-12 col-md-6 text-left">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                             <div class="form-group">
                                                 <strong>Category name</strong>
                                                 <input type="text" name="name"  id="name" class="name form-control" placeholder="supplier name" >
@@ -112,7 +111,7 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <ul class="pl-3 text-center list-unstyled" id="saveform_errList"></ul>
-                        <div class="text-center" id="success_message"></div>
+
 
 
 
@@ -238,6 +237,11 @@
                         $('#example2Modal').modal("hide");
                         $('.delete_post_btn').text("yes Delete");
                         fetchCategory();
+                        swal.fire(
+                            'congratulation!',
+                            'category deleted successfully',
+                            'success'
+                        )
                     }
 
                 });
@@ -310,6 +314,11 @@
                             $('#success_message').text("response.message");
                             $('#editModal').modal("hide");
                             fetchCategory();
+                            swal.fire(
+                                'congratulation!',
+                                'category updated successfully',
+                                'success'
+                            )
                         }
 
                     }
@@ -358,6 +367,11 @@
                             $('#addModal').modal("hide");
                             $('#addModal').find("input").val("");
                             fetchCategory();
+                            swal.fire(
+                                'congratulation!',
+                                'category added successfully',
+                                'success'
+                            )
                         }
 
                     }

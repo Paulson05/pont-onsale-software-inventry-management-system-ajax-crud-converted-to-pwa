@@ -57,11 +57,13 @@ class ProductController extends Controller
             $product = new Product();
             $product->suppliers_id = $request->suppliers_id;
             $product->name = $request->name;
+            $product->quantity= '0';
             $product->unit_id = $request->unit_id;
             $product->product_code = $product_code;
             $product->barcode = $barcodes;
             $product->category_id = $request->category_id;
 //        $supplier->created_by = Auth::user()->id;
+
             $product->save();
 
             return response()->json([

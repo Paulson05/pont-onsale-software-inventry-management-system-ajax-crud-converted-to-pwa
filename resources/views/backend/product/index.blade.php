@@ -26,7 +26,7 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <ul class="pl-3 text-center list-unstyled" id="saveform_errList"></ul>
-                                    <div class="text-center" id="success_message"></div>
+
 
 
 
@@ -230,8 +230,8 @@
 
                 </div>
 
-                <div class="col-md-12">
-                    <div class="card data-tables">
+                <div class="col-md-12 table-responsive card">
+                    <div class="data-tables">
                         <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
                             <div class="toolbar">
                                 <!--        Here you can write extra buttons/actions for the toolbar              -->
@@ -283,30 +283,30 @@
 @section('script')
     <script>
         $(document).ready(function () {
-            // fetchproduct();
-            // function  fetchproduct() {
-            //     $.ajax({
-            //         type: "GET",
-            //         url:"/fetch-product/",
-            //         dataType:"json",
-            //         success: function (response) {
-            //             // console.log(response.posts);
-            //
-            //             $('tbody').html("");
-            //             $.each(response.products, function (key, item){
-            //                 $('tbody').append('<tr>\
-            //                                 <td>'+item.id+'</td>\
-            //                                <td>'+item.name+'</td>\
-            //                                <td>'+item.suppliers_id+'</td>\
-            //                                <td>'+item.unit_id+'</td>\
-            //                                <td>'+item.category_id+'</td>\
-            //                                 <td><button type="button"  value="'+item.id+'" class="edit_product btn btn-primary" ><i class="fa fa-edit">edit</i></button></td>\
-            //                                   <td><button type="button" value="'+item.id+'"  class="delete_post btn btn-danger" ><i class="fa fa-trash">delete</i></button></td>\
-            //                                 </tr>');
-            //             });
-            //         }
-            //     })
-            // }
+            fetchproduct();
+            function  fetchproduct() {
+                $.ajax({
+                    type: "GET",
+                    url:"/fetch-product/",
+                    dataType:"json",
+                    success: function (response) {
+                        // console.log(response.posts);
+
+                        $('tbody').html("");
+                        $.each(response.products, function (key, item){
+                            $('tbody').append('<tr>\
+                                            <td>'+item.id+'</td>\
+                                           <td>'+item.name+'</td>\
+                                           <td>'+item.suppliers_id+'</td>\
+                                           <td>'+item.unit_id+'</td>\
+                                           <td>'+item.category_id+'</td>\
+                                            <td><button type="button"  value="'+item.id+'" class="edit_product btn btn-primary" ><i class="fa fa-edit">edit</i></button></td>\
+                                              <td><button type="button" value="'+item.id+'"  class="delete_post btn btn-danger" ><i class="fa fa-trash">delete</i></button></td>\
+                                            </tr>');
+                        });
+                    }
+                })
+            }
             $(document).on('click', '.add_product', function (e){
                 e.preventDefault();
                 // console.log('click');
@@ -346,6 +346,11 @@
                             $('#addModal').modal("hide");
                             $('#addModal').find("input").val("");
                             fetchproduct();
+                            swal.fire(
+                                'congratulation!',
+                                'product added successfully',
+                                'success'
+                            )
                         }
 
                     }
@@ -384,7 +389,12 @@
                         $('#success_message').text(response.message);
                         $('#example2Modal').modal("hide");
                         $('.delete_post_btn').text("yes Delete");
-                        // fetchproduct();
+                        fetchproduct();
+                        swal.fire(
+                            'congratulation!',
+                            'product deleted successfully',
+                            'success'
+                        )
                     }
 
                 });
@@ -464,6 +474,11 @@
                             $('#success_message').text(response.message);
                             $('#editModal').modal("hide");
                             fetchproduct();
+                            swal.fire(
+                                'congratulation!',
+                                'product updated successfully',
+                                'success'
+                            )
                         }
 
                     }

@@ -11,6 +11,7 @@
             </nav>
             <div class="row">
                 <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#addModal">+</button>
                     <div  class="modal  fade pt-5" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -23,7 +24,7 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <ul class="pl-3 text-center list-unstyled" id="saveform_errList"></ul>
-                                    <div class="text-center" id="success_message"></div>
+
 
 
 
@@ -92,11 +93,11 @@
                                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                     <thead>
                                     <tr>
+                                        <th>id</th>
                                         <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
+                                        <th>Phone number</th>
+                                        <th>Email</th>
+                                        <th>Adrress</th>
                                         <th class="disabled-sorting text-right">Actions</th>
                                     </tr>
                                     </thead>
@@ -135,7 +136,7 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <ul id="saveform_errList"></ul>
-                        <div id="success_message"></div>
+
 
 
 
@@ -249,7 +250,7 @@
                                            <td>'+item.mobile_no+'</td>\
                                            <td>'+item.email+'</td>\
                                            <td>'+item.address+'</td>\
-                                            <td><button type="button"  value="'+item.id+'" class="edit_customer btn btn-primary" ><i class="fa fa-edit">edit</i></button></td>\
+                                            <td><button type="button"  value="'+item.id+'" class="edit_customer btn btn-primary" ><i class="fas fa-edit">edit</i></button></td>\
                                               <td><button type="button" value="'+item.id+'"  class="delete_post btn btn-danger" ><i class="fa fa-trash">delete</i></button></td>\
                                             </tr>');
                         });
@@ -290,6 +291,11 @@
                         $('#example2Modal').modal("hide");
                         $('.delete_post_btn').text("yes Delete");
                         fetchcustomer();
+                        swal.fire(
+                            'congratulation!',
+                            'customer deleted successfully',
+                            'success'
+                        )
                     }
 
                 });
@@ -369,6 +375,11 @@
                             $('#success_message').text(response.message);
                             $('#editModal').modal("hide");
                             fetchcustomer();
+                            swal.fire(
+                                'congratulation!',
+                                'customer updated successfully',
+                                'success'
+                            )
                         }
 
                     }
@@ -419,6 +430,11 @@
                             $('#addModal').modal("hide");
                             $('#addModal').find("input").val("");
                             fetchcustomer();
+                            swal.fire(
+                                'congratulation!',
+                                'customer added successfully',
+                                'success'
+                            )
                         }
 
                     }

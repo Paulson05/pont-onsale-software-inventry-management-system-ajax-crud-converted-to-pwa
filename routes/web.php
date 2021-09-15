@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
@@ -25,17 +27,19 @@ Route::get('/', function () {
 
 
 })->name('loginpage');
-Auth::routes();
 
-//Route::get('/qr-code-g', function () {
-//
-//    \QrCode::size(500)
-//        ->format('png')
-//        ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
-//
-//    return view('qrcode.index.blade.php');
-//
-//});
+Route::get('/qr-code-g', function () {
+
+    \QrCode::size(500)
+        ->format('png')
+        ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
+
+    return view('qrcode.index');
+
+});
+
+
+
 //product
 Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/barcode', [ProductController::class, 'getProductCode'])->name('product.barcode');
@@ -140,3 +144,4 @@ Route::get('/get-product', [DefaultController::class, 'getProduct'])->name('get-
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/logout', [AdminController::class, 'logOut'])->name('logOut');
 
+Auth::routes();

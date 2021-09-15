@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id')->nullable();
             $table->string('name');
             $table->string('product_code')->nullable();
-            $table->string('barcode')->nullable();
+            $table->longText('barcode')->nullable();
             $table->integer('quantity')->default('0');
             $table->tinyInteger('status')->default('1');
             $table->integer('created_by')->nullable();

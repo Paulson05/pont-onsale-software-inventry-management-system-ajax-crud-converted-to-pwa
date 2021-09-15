@@ -1,9 +1,9 @@
 <ul class="nav">
 
-    <li  class="active" >
+    <li  >
 
 
-        <a href="dashboard.html">
+        <a href="{{Route('dashboard')}}">
 
             <i class="now-ui-icons design_app"></i>
 
