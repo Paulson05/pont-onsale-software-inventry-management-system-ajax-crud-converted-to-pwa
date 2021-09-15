@@ -1,18 +1,18 @@
-@extends('backend.template.defaults')
-@section('title', '| product')
+@extends('backend.template.default')
+@section('title', '| purchase list')
 @section('body')
     <div class="content">
         <div class="container-fluid">
 
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Product</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">({{\App\Models\Product::count()}})</li>
+                    <li class="breadcrumb-item"><a href="#">Purchase</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">({{\App\Models\Purchase::count()}})</li>
                 </ol>
             </nav>
             <div class="row">
                 <div class="col-md-12 text-right">
-                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#addModal">+</button>
+                    <a href="{{route('purchase.index')}}" class="btn btn-primary " >add</a>
                     {{--add modal--}}
                     <div  class="modal  fade pt-5" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
                         <div class="modal-dialog modal-lg">
@@ -26,7 +26,7 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <ul class="pl-3 text-center list-unstyled" id="saveform_errList"></ul>
-
+                                    <div class="text-center" id="success_message"></div>
 
 
 
@@ -42,14 +42,6 @@
 
                                         </div>
 
-                                        <div class="col-xs-12 col-sm-12 col-md-6 text-left ">
-                                            <div class="form-group">
-                                                <strong>alert stock</strong>
-                                                <input type="text" name="alert_stock"   id="alert_stock" class="alert_stock form-control " placeholder="alert_stock" >
-
-                                            </div>
-
-                                        </div>
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
                                                 <strong>Category</strong>
@@ -92,7 +84,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                                        <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
                                                 @php
                                                     $suppliers = \App\Models\Supplier::all();
@@ -238,34 +230,62 @@
 
                 </div>
 
-                <div class="col-md-12 table-responsive card">
-                    <div class="data-tables">
+                <div class="col-md-12">
+                    <div class="card data-tables">
                         <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
                             <div class="toolbar">
                                 <!--        Here you can write extra buttons/actions for the toolbar              -->
                             </div>
                             <div class="fresh-datatables">
-                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover table-responsive" cellspacing="0" width="100%" style="width:100%">
                                     <thead>
                                     <tr>
                                         <th>S/N</th>
-                                        <th>NAME</th>
+                                        <th>date</th>
                                         <th>Supplier</th>
-                                        <th>Unit</th>
-                                        <th>alert stock</th>
+                                        <th>product</th>
                                         <th>Category</th>
+                                        <th>purchase no</th>
+                                        <th>description</th>
+                                        <th>buying price</th>
+                                        <th>buying qty</th>
+                                        <th>unit price</th>
+                                        <th>status</th>
+                                        <th>created_by</th>
                                         <th class="disabled-sorting text-right">Actions</th>
                                     </tr>
                                     </thead>
-
+                                          @php
+                                          $purchases  = \App\Models\Purchase::all()
+                                          @endphp
                                     <tbody>
-                                    @foreach($products as $product)
+
+                                    @foreach($purchases as $purchase)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$product->name}}</td>
-                                            <td>{{$product->supplier->name}}</td>
-                                            <td>{{$product->unit->name}}</td>
-                                            <td>{{$product->category->name}}</td>
+                                            <td>{{date('d-m-y', strtotime($purchase->date))}}</td>
+                                            <td>{{$purchase->supplier->name}}</td>
+                                            <td>{{$purchase->product->name}}</td>
+                                            <td>{{$purchase->category->name}}</td>
+                                            <td>{{$purchase->buying_qty}}</td>
+                                            <td>{{$purchase->description}}</td>
+
+                                            <td>{{$purchase->unit_price}}</td>
+                                            <td>{{$purchase->purchase_no}}</td>
+                                            <td>${{$purchase->buying_price}}</td>
+                                            <td>
+                                                @if($purchase->status == '0')
+                                                    <button class=" btn btn-danger">pending</button>
+                                                @elseif($purchase->status == '1')
+                                                    <button class="btn btn-success">approved</button>
+                                                @endif
+                                            </td>
+                                            <td>{{$purchase->created_by}}</td>
+
+
+
+
+
 
                                             {{--                                        <td>{{$product->first()->name}}</td>--}}
 
@@ -291,31 +311,30 @@
 @section('script')
     <script>
         $(document).ready(function () {
-            fetchproduct();
-            function  fetchproduct() {
-                $.ajax({
-                    type: "GET",
-                    url:"/fetch-product/",
-                    dataType:"json",
-                    success: function (response) {
-                        // console.log(response.posts);
-
-                        $('tbody').html("");
-                        $.each(response.products, function (key, item){
-                            $('tbody').append('<tr>\
-                                            <td>'+item.id+'</td>\
-                                           <td>'+item.name+'</td>\
-                                           <td>'+item.suppliers_id+'</td>\
-                                           <td>'+item.unit_id+'</td>\
-                                            <td>'+item.alert_stock+'</td>\
-                                           <td>'+item.category_id+'</td>\
-                                            <td><button type="button"  value="'+item.id+'" class="edit_product btn btn-primary" ><i class="fa fa-edit">edit</i></button></td>\
-                                              <td><button type="button" value="'+item.id+'"  class="delete_post btn btn-danger" ><i class="fa fa-trash">delete</i></button></td>\
-                                            </tr>');
-                        });
-                    }
-                })
-            }
+            // fetchproduct();
+            // function  fetchproduct() {
+            //     $.ajax({
+            //         type: "GET",
+            //         url:"/fetch-product/",
+            //         dataType:"json",
+            //         success: function (response) {
+            //             // console.log(response.posts);
+            //
+            //             $('tbody').html("");
+            //             $.each(response.products, function (key, item){
+            //                 $('tbody').append('<tr>\
+            //                                 <td>'+item.id+'</td>\
+            //                                <td>'+item.name+'</td>\
+            //                                <td>'+item.suppliers_id+'</td>\
+            //                                <td>'+item.unit_id+'</td>\
+            //                                <td>'+item.category_id+'</td>\
+            //                                 <td><button type="button"  value="'+item.id+'" class="edit_product btn btn-primary" ><i class="fa fa-edit">edit</i></button></td>\
+            //                                   <td><button type="button" value="'+item.id+'"  class="delete_post btn btn-danger" ><i class="fa fa-trash">delete</i></button></td>\
+            //                                 </tr>');
+            //             });
+            //         }
+            //     })
+            // }
             $(document).on('click', '.add_product', function (e){
                 e.preventDefault();
                 // console.log('click');
@@ -323,7 +342,6 @@
                     'name' : $('.name').val(),
                     'suppliers_id' : $('#suppliers_id').val(),
                     'unit_id' : $('#unit_id').val(),
-                    'alert_stock' : $('#alert_stock').val(),
                     'category_id' : $('#category_id').val(),
                 }
                 // console.log(data);
@@ -356,11 +374,6 @@
                             $('#addModal').modal("hide");
                             $('#addModal').find("input").val("");
                             fetchproduct();
-                            swal.fire(
-                                'congratulation!',
-                                'product added successfully',
-                                'success'
-                            )
                         }
 
                     }
@@ -399,12 +412,7 @@
                         $('#success_message').text(response.message);
                         $('#example2Modal').modal("hide");
                         $('.delete_post_btn').text("yes Delete");
-                        fetchproduct();
-                        swal.fire(
-                            'congratulation!',
-                            'product deleted successfully',
-                            'success'
-                        )
+                        // fetchproduct();
                     }
 
                 });
@@ -484,11 +492,6 @@
                             $('#success_message').text(response.message);
                             $('#editModal').modal("hide");
                             fetchproduct();
-                            swal.fire(
-                                'congratulation!',
-                                'product updated successfully',
-                                'success'
-                            )
                         }
 
                     }

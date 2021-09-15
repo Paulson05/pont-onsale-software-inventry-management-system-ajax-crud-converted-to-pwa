@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
@@ -98,7 +99,7 @@ Route::get('/customer-wise-paid/pdf', [CustomerController::class, 'customerWiseP
 //purchase
 
 
-Route::get('/purchase', [PurchaseController::class, 'index.blade.php'])->name('purchase.index.blade.php');
+Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase.index');
 Route::post('/post-purchase', [PurchaseController::class, 'store']);
 Route::get('/fetchpurchase', [PurchaseController::class, 'fetchpurchase']);
 Route::get('/edit-purchase/{id}', [PurchaseController::class, 'edit']);

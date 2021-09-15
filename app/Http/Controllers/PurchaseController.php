@@ -14,7 +14,7 @@ use function GuzzleHttp\Promise\all;
 class PurchaseController extends Controller
 {
     public function index(){
-        return view('backend.pages.purchase.purchaseManagement');
+        return view('backend.purchase.purchaseManagement');
     }
 
 
@@ -49,11 +49,11 @@ class PurchaseController extends Controller
               return redirect()->route('purchase-list');
     }
 public function purchaseList(){
-        return view('backend.pages.purchase.purchase-list');
+        return view('backendpurchase.purchase-list');
 }
     public function pendingList(){
 
-        return view('backend.pages.purchase.pending-list');
+        return view('backend.purchase.pending-list');
     }
 
     public function approve($id){

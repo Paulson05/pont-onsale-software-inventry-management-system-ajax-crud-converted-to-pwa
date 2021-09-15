@@ -1,6 +1,6 @@
 <ul class="nav">
 
-    <li  >
+    <li class="{{ Route::currentRouteNamed('dashboard') ? 'active' : '' }}"  >
 
 
         <a href="{{Route('dashboard')}}">
@@ -62,10 +62,10 @@
                     </a>
                 </li>
 
-                <li >
-                    <a href="pages/register.html">
-                        <span class="sidebar-mini-icon">R</span>
-                        <span class="sidebar-normal"> Register </span>
+                <li class="{{ Route::currentRouteNamed('purchase.index') ? 'active' : '' }}" >
+                    <a href="{{route('purchase.index')}}">
+                        <span class="sidebar-mini-icon">PM</span>
+                        <span class="sidebar-normal"> Purchase Management </span>
                     </a>
                 </li>
 

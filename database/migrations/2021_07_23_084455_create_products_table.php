@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('product_code')->nullable();
             $table->longText('barcode')->nullable();
             $table->integer('quantity')->default('0');
+            $table->integer('alert_stock')->default('100');
             $table->tinyInteger('status')->default('1');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
