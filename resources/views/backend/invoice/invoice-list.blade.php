@@ -14,219 +14,7 @@
                 <div class="col-md-12 text-right">
                     <a href="{{route('invoice.index')}}" class="btn btn-primary " >add</a>
                     {{--add modal--}}
-                    <div  class="modal  fade pt-5" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Creat invoice</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
 
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <ul class="pl-3 text-center list-unstyled" id="saveform_errList"></ul>
-                                    <div class="text-center" id="success_message"></div>
-
-
-
-                                    <div class="row">
-
-
-                                        <div class="col-xs-12 col-sm-12 col-md-6 text-left ">
-                                            <div class="form-group">
-                                                <strong>Product name</strong>
-                                                <input type="text" name="name"   id="name" class="name form-control " placeholder="supplier name" >
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-12 col-md-6 text-left">
-                                            <div class="form-group">
-                                                <strong>Category</strong>
-                                                @php
-                                                    $categories = \App\Models\Category::all();
-                                                @endphp
-                                                <select name="categories_id" id="category_id" class="category_id form-control" data-title="Single Category" data-style="btn-default btn-outline" data-menu-style="dropdown-blue">
-
-                                                    <option>--select category--</option>
-
-                                                    @forelse($categories as $category)
-                                                        <option value="{{$category->id}}">{{$category->name}}</option>
-                                                    @empty
-
-
-                                                        <option value="id">no category</option>
-
-                                                    @endforelse
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-6 text-left">
-                                            <div class="form-group">
-                                                @php
-                                                    $units = \App\Models\Unit::all();
-                                                @endphp
-                                                <strong>Unit</strong>
-                                                <select name="unit_id" id="unit_id" class="form-control" data-title="Single Unit" data-style="btn-default btn-outline" data-menu-style="dropdown-blue">
-
-                                                    <option>--select unit--</option>
-
-                                                    @forelse($units as $unit)
-                                                        <option value="{{{$unit->id}}}">{{$unit->name}}</option>
-                                                    @empty
-                                                        <option value="">no unit</option>
-
-                                                    @endforelse
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-6 text-left">
-                                            <div class="form-group">
-                                                @php
-                                                    $suppliers = \App\Models\Supplier::all();
-                                                @endphp
-                                                <strong>Supplier</strong>
-                                                <select name="suppliers_id" id="suppliers_id" class="suppliers_id form-control" data-title="Single Select" data-style="btn-default btn-outline" data-menu-style="dropdown-blue">
-                                                    <option>--select supplier--</option>
-                                                    @forelse($suppliers as $supplier)
-
-                                                        <option value="{{$supplier->id}}">{{$supplier->name}}</option>
-                                                    @empty
-                                                        <option value="is">no supplier</option>
-
-                                                    @endforelse
-                                                </select>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                            <button type="submit" class="add_product btn btn-primary">Save</button>
-                                        </div>
-                                    </div>
-
-
-
-
-                                </div>
-
-                            </div>
-
-
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-                {{--edit modal --}}
-                <div  class="modal  fade pt-5" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
-
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Edit product</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <ul class="pl-3 text-center list-unstyled" id="saveform_errList"></ul>
-                                <div class="text-center" id="success_message"></div>
-
-
-
-                                <div class="row">
-                                    <input type="hidden" id="edit_post_id">
-
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                        <div class="form-group">
-                                            <strong>product name</strong>
-                                            <input type="text" name="name"  id="edit_name" class="name form-control" placeholder="supplier name" >
-
-                                        </div>
-
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                        <div class="form-group">
-                                            <strong>category name</strong>
-                                            <input type="text" name="categories_id"  id="edit_categories_id" class="name form-control" placeholder="supplier name" >
-
-                                        </div>
-
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                        <div class="form-group">
-                                            <strong>unit name</strong>
-                                            <input type="text" name="units_id"  id="edit_units_id" class="name form-control" placeholder="supplier name" >
-
-                                        </div>
-
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                        <div class="form-group">
-                                            <strong>supplier name</strong>
-                                            <input type="text" name="suppliers_id"  id="edit_suppliers_id" class="name form-control" placeholder="supplier name" >
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                        <button type="submit" class="update_product btn btn-primary">Update</button>
-                                    </div>
-                                </div>
-
-
-
-
-                            </div>
-
-                        </div>
-
-
-
-
-                    </div>
-                </div>
-                {{--delete modal--}}
-                <div  class="modal  fade pt-5" id="example2Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
-                    <div class="modal-dialog modal-small text-center">
-                        <div class="modal-content">
-                            <!-- Modal Header -->
-                            <div class="modal-header ">
-                                <h4 class="modal-title text-center">Delete product</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-
-                            <!-- Modal body -->
-                            <div class="modal-body">
-
-                                <input type="hidden" id="delete_post_id">
-
-                                <h4>are you sure want to delete this data</h4>
-                            </div>
-
-                            <div class="modal-footer tex">
-                                <button type="submit" class="add_post btn btn-outline-secondary" data-dismiss="modal">close</button>
-                                <button type="submit" class="delete_post_btn btn btn-danger delete_post_btn">yes delete</button>
-
-                            </div>
-
-
-
-                        </div>
-
-
-
-
-                    </div>
 
                 </div>
 
@@ -236,17 +24,17 @@
                             <div class="toolbar">
                                 <!--        Here you can write extra buttons/actions for the toolbar              -->
                             </div>
-                            <div class="fresh-datatables">
-                                <table id="datatables" class="table table-striped table-no-bordered table-hover table-responsive" cellspacing="0" width="100%" style="width:100%">
+                            <div class="fresh-datatables justify-content-center ">
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover table-responsive container justify-content-center" cellspacing="0" width="100%" style="width:100%">
                                     <thead>
                                     <tr>
                                         <th>S/N</th>
-                                        <th>Name</th>
-
                                         <th>Invoice No</th>
+                                        <th>Name</th>
                                         <th>date</th>
                                         <th>Description</th>
                                         <th>status</th>
+                                        <th>approved</th>
 
                                     </tr>
                                     </thead>
@@ -258,11 +46,12 @@
                                     @foreach($invoices as $invoice)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
+                                            <td>#{{$invoice->invoice_no}}</td>
                                             <td>
                                                 {{$invoice['payment']['customer']['name']}}
                                                 {{$invoice->payment->customer->mobile_no}}-  {{$invoice->payment->customer->address}}
                                             </td>
-                                            <td>#{{$invoice->invoice_no}}</td>
+
                                             <td>{{date('d-m-y', strtotime($invoice->date))}}</td>
                                             <td>{{$invoice->description}}</td>
                                             <td>
@@ -274,7 +63,7 @@
                                             </td>
                                             <td>
                                                 @if($invoice->status == '0')
-                                                    <a href="{{route('invoice.approve', $invoice->id)}}"><i>approved</i></a>
+                                                    <a href="{{route('invoice.approve', $invoice->id)}}"><button class="btn btn-outline-success"><i class="fa fa-check-circle" style="color: black;"></i></button></a>
                                             @endif
                                             <td>
 

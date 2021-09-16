@@ -89,7 +89,7 @@
 
     </li>
 
-    <li >
+    <li  >
 
 
         <a data-toggle="collapse" href="#componentsExamples" >
@@ -97,38 +97,38 @@
             <i class="now-ui-icons education_atom"></i>
 
             <p>
-                Components <b class="caret"></b>
+               Invoice<b class="caret"></b>
             </p>
         </a>
 
         <div class="collapse " id="componentsExamples">
             <ul class="nav">
 
-                <li >
-                    <a href="components/buttons.html">
-                        <span class="sidebar-mini-icon">B</span>
-                        <span class="sidebar-normal"> Buttons </span>
+                <li class="{{ Route::currentRouteNamed('pending.list') ? 'active' : '' }}" >
+                    <a href="{{Route('invoice.index')}}">
+                        <span class="sidebar-mini-icon">AI</span>
+                        <span class="sidebar-normal">Add Invoice</span>
                     </a>
                 </li>
 
-                <li >
-                    <a href="components/grid.html">
-                        <span class="sidebar-mini-icon">G</span>
-                        <span class="sidebar-normal"> Grid System </span>
+                <li class="{{ Route::currentRouteNamed('invoice.daily.report') ? 'active' : '' }}" >
+                    <a href="{{Route('invoice.daily.report')}}}">
+                        <span class="sidebar-mini-icon">DI</span>
+                        <span class="sidebar-normal">Daily invoice </span>
                     </a>
                 </li>
 
-                <li >
-                    <a href="components/panels.html">
-                        <span class="sidebar-mini-icon">P</span>
-                        <span class="sidebar-normal"> Panels </span>
+                <li class="{{ Route::currentRouteNamed('invoice.print-list') ? 'active' : '' }}" >
+                    <a href="{{Route('invoice.print-list')}}">
+                        <span class="sidebar-mini-icon">PI</span>
+                        <span class="sidebar-normal">Print Invoice</span>
                     </a>
                 </li>
 
-                <li >
-                    <a href="components/sweet-alert.html">
-                        <span class="sidebar-mini-icon">SA</span>
-                        <span class="sidebar-normal"> Sweet Alert </span>
+                <li class="{{ Route::currentRouteNamed('invoice.list') ? 'active' : '' }}" >
+                    <a class="nav-link" href="{{route('invoice.list')}}">
+                        <span class="sidebar-mini">IL</span>
+                        <span class="sidebar-normal">Invoice List</span>
                     </a>
                 </li>
 

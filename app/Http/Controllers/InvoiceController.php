@@ -32,7 +32,7 @@ class InvoiceController extends Controller
         }
         $data['customers'] = Customer::all();
         $data['date'] = date('y-m-d');
-        return view('backend.invoice.index.blade.php', $data);
+        return view('backend.invoice.index', $data);
     }
     public function invoiceList(){
         return view('backend.invoice.invoice-list');

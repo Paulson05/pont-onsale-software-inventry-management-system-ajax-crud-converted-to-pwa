@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DefaultController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\StockController;
@@ -113,7 +114,7 @@ Route::get('/daily/purchase/report', [PurchaseController::class, 'dailyPurchaseR
 Route::get('/purchase/daily-report/pdf', [PurchaseController::class, 'DailyPurchasePdf'])->name('daily.purchase.report.pdf');
 
 // invoice
-Route::get('/invoice', [InvoiceController::class, 'index.blade.php'])->name('invoice.index');
+Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
 Route::get('/invoice/pending', [InvoiceController::class, 'invoiceList'])->name('invoice.list');
 //Route::get('/invoiceapproval', [InvoiceController::class, 'pendingList'])->name('invoicepending.list');
 
