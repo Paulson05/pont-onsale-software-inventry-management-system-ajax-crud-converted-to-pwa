@@ -113,7 +113,7 @@ Route::get('/daily/purchase/report', [PurchaseController::class, 'dailyPurchaseR
 Route::get('/purchase/daily-report/pdf', [PurchaseController::class, 'DailyPurchasePdf'])->name('daily.purchase.report.pdf');
 
 // invoice
-Route::get('/invoice', [InvoiceController::class, 'index.blade.php'])->name('invoice.index.blade.php');
+Route::get('/invoice', [InvoiceController::class, 'index.blade.php'])->name('invoice.index');
 Route::get('/invoice/pending', [InvoiceController::class, 'invoiceList'])->name('invoice.list');
 //Route::get('/invoiceapproval', [InvoiceController::class, 'pendingList'])->name('invoicepending.list');
 
