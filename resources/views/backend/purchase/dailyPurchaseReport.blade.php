@@ -1,4 +1,4 @@
-@extends('backend.template.default')
+@extends('backend.template.defaults')
 @section('title', '| invoice')
 @section('body')
          <div class="content">

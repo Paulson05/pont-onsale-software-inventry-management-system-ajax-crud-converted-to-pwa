@@ -11,6 +11,7 @@
 
 <script src="../assets/js/plugins/moment.min.js"></script>
 
+<script src="{{asset('assets/js/handlebar.min.js')}}"></script>
 
 
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
@@ -64,7 +65,7 @@
 <!--  Notifications Plugin    -->
 <script src="../assets/js/plugins/bootstrap-notify.js"></script>
 
-
+<script src="{{asset('/assets/js/plugins/bootstrap-notify.js')}}"></script>
 
 
 

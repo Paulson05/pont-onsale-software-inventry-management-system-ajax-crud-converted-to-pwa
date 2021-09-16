@@ -49,7 +49,7 @@ class PurchaseController extends Controller
               return redirect()->route('purchase-list');
     }
 public function purchaseList(){
-        return view('backendpurchase.purchase-list');
+        return view('backend.purchase.purchase-list');
 }
     public function pendingList(){
 
@@ -70,7 +70,7 @@ public function purchaseList(){
 
 
 public function dailyPurchaseReport(){
-      return view('backend.pages.purchase.dailyPurchaseReport');
+      return view('backend.purchase.dailyPurchaseReport');
 }
 public function DailyPurchasePdf(Request $request){
     $sdate = date('y-m-d', strtotime($request->start_date));

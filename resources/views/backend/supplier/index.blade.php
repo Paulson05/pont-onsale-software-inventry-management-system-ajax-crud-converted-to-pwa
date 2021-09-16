@@ -253,8 +253,8 @@
                                            <td>'+item.mobile_no+'</td>\
                                            <td>'+item.email+'</td>\
                                            <td>'+item.address+'</td>\
-                                            <td><button type="button"  value="'+item.id+'" class="edit_btn btn btn-primary" ><i class="fas fa-edit"> edit</i></button></td>\
-                                              <td><button type="button" value="'+item.id+'"  class="delete_post btn btn-danger" ><i class="fa fa-trash">delete</i></button></td>\
+                                            <td><button type="button"  value="'+item.id+'" class="edit_btn btn btn-primary" ><i class="fa fa-edit"></i></button></td>\
+                                              <td><button type="button" value="'+item.id+'"  class="delete_post btn btn-danger" ><i class="fa fa-trash"></i></button></td>\
                                             </tr>');
                         });
                     }
@@ -400,6 +400,7 @@
                     'email' : $('.email').val(),
                     'address' : $('.address').val(),
 
+
                 }
                 console.log(data);
                 $.ajaxSetup({
@@ -433,7 +434,7 @@
                             fetchSupplier();
                             swal.fire(
                                 'congratulation!',
-                                'supllier updated successfully',
+                                'supplier added successfully',
                                 'success'
                             )
                         }

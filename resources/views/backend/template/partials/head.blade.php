@@ -5,6 +5,7 @@
 <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
 <link rel="icon" type="image/png" href="../assets/img/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <title>

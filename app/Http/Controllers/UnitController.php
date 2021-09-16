@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UnitFormRequest;
 use App\Models\unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -30,31 +31,17 @@ class UnitController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(UnitFormRequest $request)
     {
-        $validator = Validator::make($request->all(),[
+        Unit::create($request->validated());
 
-            'name' => 'required',
-
-        ]);
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 400,
-                'errors' => $validator->messages(),
-            ]);
-        }else{
-            $unit = new Unit();
-            $unit->name = $request->name;
-
-//        $supplier->created_by = Auth::user()->id;
-            $unit->save();
 
             return response()->json([
                 'status' => 200,
                 'message' => 'post added successfully',
 
             ]);
-        }
+
     }
     public function  fetchUnit(){
         $units = Unit::all();

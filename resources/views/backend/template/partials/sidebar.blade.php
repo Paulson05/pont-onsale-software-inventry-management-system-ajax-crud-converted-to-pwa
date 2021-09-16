@@ -69,17 +69,17 @@
                     </a>
                 </li>
 
-                <li >
-                    <a href="pages/lock.html">
-                        <span class="sidebar-mini-icon">LS</span>
-                        <span class="sidebar-normal"> Lock Screen </span>
+                <li class="{{ Route::currentRouteNamed('pending.list') ? 'active' : '' }}" >
+                    <a href="{{route('pending.list')}}">
+                        <span class="sidebar-mini-icon">PL</span>
+                        <span class="sidebar-normal">Pending list</span>
                     </a>
                 </li>
 
-                <li >
-                    <a href="pages/user.html">
-                        <span class="sidebar-mini-icon">UP</span>
-                        <span class="sidebar-normal"> User Profile </span>
+                <li class="{{ Route::currentRouteNamed('daily.purchase.report') ? 'active' : '' }}" >
+                    <a href="{{route('daily.purchase.report')}}">
+                        <span class="sidebar-mini-icon">DR</span>
+                        <span class="sidebar-normal">Daily Report </span>
                     </a>
                 </li>
 

@@ -282,11 +282,9 @@
 
 @endsection
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.7/handlebars.min.js">
-
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.7/handlebars.min.js"></script>
     <script id="document-template" type="text/x-handlebars-template">
-<tr class="delete_add_more_item" id="delete_add_more_item">
+     <tr class="delete_add_more_item" id="delete_add_more_item">
     <input type="hidden" name="date[]" value="@{{date}}">
     <input type="hidden" name="purchase_no[]" value="@{{purchase_no}}">
     <input type="hidden" name="suppliers_id[]" value="@{{suppliers_id}}">

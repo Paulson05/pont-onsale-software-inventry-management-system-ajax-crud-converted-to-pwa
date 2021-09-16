@@ -1,4 +1,4 @@
-@extends('backend.template.default')
+@extends('backend.template.defaults')
 @section('title', '| purchase list')
 @section('body')
     <div class="content">
@@ -290,10 +290,12 @@
                                             {{--                                        <td>{{$product->first()->name}}</td>--}}
 
                                             <td>
-                                                <button type="button"   class="delete_post btn btn-primary" ><i class="fa fa-trash">delete</i></button>
-
-                                                <button type="button"   class="edit_product btn btn-primary" ><i class="fa fa-edit">edit</i></button>
+                                                <button type="button"   class="edit_product btn btn-primary" ><i class="fa fa-edit"></i></button>
                                             <td>
+                                            <td>
+                                                <button type="button"   class="delete_post btn btn-primary" ><i class="fa fa-trash"></i></button>
+
+                                            </td>
 
                                         </tr>
                                     @endforeach
