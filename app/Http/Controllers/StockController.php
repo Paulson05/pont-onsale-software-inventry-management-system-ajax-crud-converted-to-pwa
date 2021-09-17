@@ -15,7 +15,7 @@ class StockController extends Controller
     }
     public function StockReportPdf(){
         $data['products'] =  Product::orderBy('suppliers_id', 'asc')->orderBy('category_id', 'asc')->get();
-        $pdf = \PDF::loadView('backend.pages.pdf.stockreportpdf',$data);
+        $pdf = \PDF::loadView('backend.pdf.stockreportpdf',$data);
         return $pdf->stream('invoice.pdf');
     }
 
@@ -23,7 +23,7 @@ class StockController extends Controller
         return view('backend.stock.supplier-product-wise');
     }
 public  function supplierWiseReportPdf(Request $request){
-    $data['product'] =  Product::orderBy('suppliers_id', 'asc')->orderBy('category_id', 'asc')->where('suppliers_id',$request->suppliers_id)->get();
+    $data['products'] =  Product::orderBy('suppliers_id', 'asc')->orderBy('category_id', 'asc')->where('suppliers_id',$request->suppliers_id)->get();
 
     $pdf = \PDF::loadView('backend.pdf.supplierwisestockreportpdf',$data);
     return $pdf->stream('invoice.pdf');

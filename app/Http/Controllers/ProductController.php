@@ -131,7 +131,7 @@ class ProductController extends Controller
 
     public function getProductCode(){
         $productBarCode = Product::select('barcode','product_code' )->get();
-        return view('backend.pages.product.productbarcode')->with([
+        return view('backend.product.productbarcode')->with([
             'productBarCode' =>  $productBarCode
         ]);
     }
