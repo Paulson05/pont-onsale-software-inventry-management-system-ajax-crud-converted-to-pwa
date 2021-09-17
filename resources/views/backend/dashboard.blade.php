@@ -12,8 +12,8 @@
                                     <div class="icon icon-primary">
                                         <i class="now-ui-icons ui-2_chat-round"></i>
                                     </div>
-                                    <h3 class="info-title">859</h3>
-                                    <h6 class="stats-title">Messages</h6>
+                                    <h3 class="info-title">{{\App\Models\Customer::count()}}</h3>
+                                    <h6 class="stats-title">Customer</h6>
                                 </div>
                             </div>
                         </div>
@@ -23,8 +23,8 @@
                                     <div class="icon icon-success">
                                         <i class="now-ui-icons business_money-coins"></i>
                                     </div>
-                                    <h3 class="info-title"><small>$</small>3,521</h3>
-                                    <h6 class="stats-title">Today Revenue</h6>
+                                    <h3 class="info-title">{{\App\Models\Supplier::count()}}</h3>
+                                    <h6 class="stats-title">Supplier</h6>
                                 </div>
                             </div>
                         </div>
@@ -34,8 +34,8 @@
                                     <div class="icon icon-info">
                                         <i class="now-ui-icons users_single-02"></i>
                                     </div>
-                                    <h3 class="info-title">562</h3>
-                                    <h6 class="stats-title">Customers</h6>
+                                    <h3 class="info-title">{{\App\Models\Category::count()}}</h3>
+                                    <h6 class="stats-title">Category</h6>
                                 </div>
                             </div>
                         </div>
@@ -45,8 +45,8 @@
                                     <div class="icon icon-danger">
                                         <i class="now-ui-icons objects_support-17"></i>
                                     </div>
-                                    <h3 class="info-title">353</h3>
-                                    <h6 class="stats-title">Support Requests</h6>
+                                    <h3 class="info-title">{{\App\Models\Product::count()}}</h3>
+                                    <h6 class="stats-title">Product</h6>
                                 </div>
                             </div>
                         </div>

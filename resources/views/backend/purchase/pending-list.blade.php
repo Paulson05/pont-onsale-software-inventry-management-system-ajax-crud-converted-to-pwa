@@ -250,8 +250,8 @@
                                         <th>buying price</th>
                                         <th>buying qty</th>
                                         <th>unit price</th>
-                                        <th>status</th>
                                         <th>created_by</th>
+                                        <th>status</th>
                                         <th class="disabled-sorting text-right">Actions</th>
                                     </tr>
                                     </thead>
@@ -273,14 +273,15 @@
                                             <td>{{$purchase->unit_price}}</td>
                                             <td>{{$purchase->purchase_no}}</td>
                                             <td>${{$purchase->buying_price}}</td>
+                                            <td>{{$purchase->created_by}}</td>
+
                                             <td>
                                                 @if($purchase->status == '0')
-                                                    <button class=" btn btn-danger">pending</button>
+                                                    <button class="btn btn-outline-success"><i style="color: red;">pending</i></button>
                                                 @elseif($purchase->status == '1')
                                                     <button class="btn btn-success">approved</button>
                                                 @endif
                                             </td>
-                                            <td>{{$purchase->created_by}}</td>
 
 
 
@@ -291,8 +292,10 @@
 
                                             <td>
                                                       @if($purchase->status == '0')
-                                                    <a href="{{route('purchase.approve', $purchase->id)}}"><i>approved</i></a>
-                                                    @endif
+
+                                                    <a href="{{route('purchase.approve', $purchase->id)}}"><button class="btn btn-outline-success"><i class="fa fa-check-circle" style="color: black;"></i></button></a>
+
+                                            @endif
                                             <td>
 
                                         </tr>

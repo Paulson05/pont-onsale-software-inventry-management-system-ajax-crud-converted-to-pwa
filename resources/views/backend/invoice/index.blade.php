@@ -211,7 +211,7 @@
                                               <div  class="col-xs-12 col-sm-12 col-md-1 ">
                                                   {{--                                        <button type="submit" class="add_product btn btn-primary">Save</button>--}}
                                                   <div class="mt-4">
-                                                      <a class="btn btn-primary addeventmore"><i class="fa fa fa-plus ">add item</i></a>
+                                                      <a class="btn btn-primary addeventmore"><i class="fa fa-plus "></i></a>
 
                                                   </div>
                                               </div>
@@ -348,7 +348,7 @@
         <input type="number"  class="form-control form-control-sm text-right selling_price"  name="selling_price[]" value="0" readonly>
 
     </td>
-    <td><i class="btn btn-danger fa fa-window-close removeeventmore">x</i></td>
+    <td><i class="btn btn-danger fa fa-window-close removeeventmore"></i></td>
 </tr>
     </script>
     <script>
