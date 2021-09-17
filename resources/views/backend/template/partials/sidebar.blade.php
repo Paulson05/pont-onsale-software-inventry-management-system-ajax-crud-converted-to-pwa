@@ -132,20 +132,6 @@
                     </a>
                 </li>
 
-                <li >
-                    <a href="components/icons.html">
-                        <span class="sidebar-mini-icon">I</span>
-                        <span class="sidebar-normal"> Icons </span>
-                    </a>
-                </li>
-
-                <li >
-                    <a href="components/typography.html">
-                        <span class="sidebar-mini-icon">T</span>
-                        <span class="sidebar-normal"> Typography </span>
-                    </a>
-                </li>
-
             </ul>
         </div>
 
@@ -160,7 +146,7 @@
             <i class="now-ui-icons files_single-copy-04"></i>
 
             <p>
-                Forms <b class="caret"></b>
+                Stock Managment<b class="caret"></b>
             </p>
         </a>
 
@@ -168,16 +154,16 @@
             <ul class="nav">
 
                 <li >
-                    <a href="forms/regular.html">
-                        <span class="sidebar-mini-icon">RF</span>
-                        <span class="sidebar-normal"> Regular Forms </span>
+                    <a href="{{route('stock.report')}}">
+                        <span class="sidebar-mini-icon">SR</span>
+                        <span class="sidebar-normal">STOCK Report</span>
                     </a>
                 </li>
 
                 <li >
-                    <a href="forms/extended.html">
-                        <span class="sidebar-mini-icon">EF</span>
-                        <span class="sidebar-normal"> Extended Forms </span>
+                    <a href="{{route('supplier.wise.report')}}">
+                        <span class="sidebar-mini-icon">SWR</span>
+                        <span class="sidebar-normal">Supplier Wise Report </span>
                     </a>
                 </li>
 
