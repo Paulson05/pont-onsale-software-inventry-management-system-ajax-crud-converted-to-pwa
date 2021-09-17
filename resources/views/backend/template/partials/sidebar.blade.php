@@ -112,7 +112,7 @@
                 </li>
 
                 <li class="{{ Route::currentRouteNamed('invoice.daily.report') ? 'active' : '' }}" >
-                    <a href="{{Route('invoice.daily.report')}}}">
+                    <a href="{{Route('invoice.daily.report')}}">
                         <span class="sidebar-mini-icon">DI</span>
                         <span class="sidebar-normal">Daily invoice </span>
                     </a>
@@ -125,17 +125,10 @@
                     </a>
                 </li>
 
-                <li class="{{ Route::currentRouteNamed('invoice.list') ? 'active' : '' }}" >
-                    <a class="nav-link" href="{{route('invoice.list')}}">
-                        <span class="sidebar-mini">IL</span>
+                <li  class="{{ Route::currentRouteNamed('invoice.list') ? 'active' : '' }}" >
+                    <a href="{{route('invoice.list')}}">
+                        <span class="sidebar-mini-icon">IL</span>
                         <span class="sidebar-normal">Invoice List</span>
-                    </a>
-                </li>
-
-                <li >
-                    <a href="components/notifications.html">
-                        <span class="sidebar-mini-icon">N</span>
-                        <span class="sidebar-normal"> Notifications </span>
                     </a>
                 </li>
 

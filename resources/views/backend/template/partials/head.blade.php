@@ -33,13 +33,6 @@
 
 
 <!-- Twitter Card data -->
-<meta name="twitter:card" content="product">
-<meta name="twitter:site" content="@creativetim">
-<meta name="twitter:title" content="Now Ui Dashboard PRO by Creative Tim">
-
-<meta name="twitter:description" content="Now UI Dashboard PRO is a beautiful Bootstrap 4 admin dashboard with a large number of components, designed to look beautiful, clean and organized. If you are looking for a tool to manage dates about your business, this dashboard is the thing for you.">
-<meta name="twitter:creator" content="@creativetim">
-<meta name="twitter:image" content="../../../s3.amazonaws.com/creativetim_bucket/products/72/opt_nudp_thumbnail.jpg">
 
 
 <!-- Open Graph data -->
@@ -66,12 +59,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!-- CSS Files -->
 
-<link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="{{asset('/assets/css/bootstrap.min.css')}}" rel="stylesheet" />
 
 
 
 
-<link href="../assets/css/now-ui-dashboard.minaa26.css?v=1.5.0" rel="stylesheet" />
+<link href="{{asset('/assets/css/now-ui-dashboard.minaa26.css?v=1.5.0')}}" rel="stylesheet" />
 
 
 

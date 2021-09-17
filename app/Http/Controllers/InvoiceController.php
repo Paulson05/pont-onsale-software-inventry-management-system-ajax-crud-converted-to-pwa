@@ -159,6 +159,7 @@ class InvoiceController extends Controller
                ]);
    }
    public function printInvoice($id){
+
         $data['invoice'] = invoice::with(['invoicedetails'])->find($id);
 
        $pdf = \PDF::loadView('backend.pages.pdf.invoice',$data);
@@ -167,6 +168,7 @@ class InvoiceController extends Controller
    }
 
    public function DailyInvoice(){
+
        return view('backend.invoice.dailyInvoiceReport');
    }
 
