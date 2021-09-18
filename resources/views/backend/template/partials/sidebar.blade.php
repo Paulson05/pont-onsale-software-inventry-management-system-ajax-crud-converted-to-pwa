@@ -40,6 +40,26 @@
                         <span class="sidebar-normal"> Customer Management</span>
                     </a>
                 </li>
+                <li  class="{{ Route::currentRouteNamed('paid.customer') ? 'active' : '' }}" >
+                    <a href="{{route('paid.customer')}}">
+                        <span class="sidebar-mini-icon">PC</span>
+                        <span class="sidebar-normal">Paid Cutomer</span>
+                    </a>
+                </li>
+                <li  class="{{ Route::currentRouteNamed('customer.wise.report') ? 'active' : '' }}" >
+                    <a href="{{route('customer.wise.report')}}">
+                        <span class="sidebar-mini-icon">PC</span>
+                        <span class="sidebar-normal">Paid Cutomer</span>
+                    </a>
+                </li>
+
+
+                <li  class="{{ Route::currentRouteNamed('customer.report') ? 'active' : '' }}" >
+                    <a href="{{route('customer.report')}}">
+                        <span class="sidebar-mini-icon">CR</span>
+                        <span class="sidebar-normal"> Customer report</span>
+                    </a>
+                </li>
 
                 <li class="{{ Route::currentRouteNamed('unit.index') ? 'active' : '' }}" >
                     <a href="{{route('unit.index')}}">
@@ -79,7 +99,7 @@
                 <li class="{{ Route::currentRouteNamed('daily.purchase.report') ? 'active' : '' }}" >
                     <a href="{{route('daily.purchase.report')}}">
                         <span class="sidebar-mini-icon">DR</span>
-                        <span class="sidebar-normal">Daily Report </span>
+                        <span class="sidebar-normal">Daily purchase Report </span>
                     </a>
                 </li>
 

@@ -20,6 +20,7 @@ class StockController extends Controller
     }
 
     public  function supplierWiseReport(){
+
         return view('backend.stock.supplier-product-wise');
     }
 public  function supplierWiseReportPdf(Request $request){

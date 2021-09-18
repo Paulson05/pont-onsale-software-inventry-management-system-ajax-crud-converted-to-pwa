@@ -46,22 +46,22 @@ public function paidCustomer(){
 }
     public function paidCustomerPdf(){
         $data['allData'] = payment::where('paid_status', '!=', 'full_due')->get();
-        $pdf = \PDF::loadView('backend.pages.pdf.paid-customer-report-pdf',$data);
+        $pdf = \PDF::loadView('backend.pdf.paid-customer-report-pdf',$data);
         return $pdf->stream('invoice.pdf');
     }
 
     public function customerWiseReport(){
-        return view('backend.pages.customer.customer-wise-report');
+        return view('backend.customer.customer-wise-report');
     }
 
     public function customerWiseCreditPdf(Request $request){
         $data['allData'] = payment::where('customers_id',$request->customer_id)->whereIn('paid_status', ['full_due', 'partial_paid'])->get();
-        $pdf = \PDF::loadView('backend.pages.pdf.customer-wise-credit-pdf',$data);
+        $pdf = \PDF::loadView('backend.pdf.customer-wise-credit-pdf',$data);
         return $pdf->stream('invoice.pdf');
     }
     public function customerWisePaidPdf(Request $request){
         $data['allData'] = payment::where('customers_id',$request->customer_id)->where('paid_status', '!=', 'full_due')->get();
-        $pdf = \PDF::loadView('backend.pages.pdf.customer-wise-paid-pdf',$data);
+        $pdf = \PDF::loadView('backend.pdf.customer-wise-paid-pdf',$data);
         return $pdf->stream('invoice.pdf');
     }
 

@@ -75,10 +75,10 @@ public function dailyPurchaseReport(){
 public function DailyPurchasePdf(Request $request){
     $sdate = date('y-m-d', strtotime($request->start_date));
     $edate = date('y-m-d', strtotime($request->end_date));
-    $data['purchases'] = Purchase::whereUpdatedBy('date', [$sdate,$edate])->where('status', '1')->get();
+    $data['invoices'] = Purchase::whereUpdatedBy('date', [$sdate,$edate])->where('status', '1')->get();
     $data['start_date']   = date('y-m-d', strtotime($request->start_date));
     $data['end_date']  = date('y-m-d', strtotime($request->end_date));
-    $pdf = \PDF::loadView('backend.pages.pdf.daily-purchase-report-pdf',$data);
+    $pdf = \PDF::loadView('backend.pdf.daily-purchase-report-pdf',$data);
     return $pdf->stream('invoice.pdf');
 }
 
