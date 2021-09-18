@@ -69,7 +69,7 @@
                             <div class="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Creat supplier</h4>
+                                    <h4 class="modal-title">Creat New User</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
 
@@ -84,7 +84,7 @@
 
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
-                                                <strong>Supllier name</strong>
+                                                <strong>User name</strong>
                                                 <input type="text" name="name"  id="name" class="name form-control" placeholder="supplier name" >
 
                                             </div>
@@ -92,8 +92,8 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
-                                                <strong>phone number</strong>
-                                                <input type="number" name="mobile_no" id="mobile_no" class="mobile_no form-control" placeholder="phone number" >
+                                                <strong>password</strong>
+                                                <input type="password" name="password" id="password" class="password form-control" placeholder="password" >
 
                                             </div>
 
@@ -108,15 +108,15 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
-                                                <strong>Address</strong>
-                                                <input type="text" name="address" class="address form-control" placeholder="address" >
+                                                <strong>Phone Number</strong>
+                                                <input type="number" name="phone_number" class="phone_number form-control" placeholder="+34933223" >
 
                                             </div>
 
                                         </div>
 
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                            <button type="submit" class="add_product btn btn-primary">Save</button>
+                                            <button type="submit" class="add_user btn btn-primary">Save</button>
                                         </div>
                                     </div>
 
@@ -148,9 +148,10 @@
                                     <tr>
                                         <th>SN</th>
                                         <th>Name</th>
-                                        <th>Mobile</th>
                                         <th>Email</th>
-                                        <th>Address</th>
+                                        <th>Mobile</th>
+                                        <th>Role</th>
+                                        <th>Permission</th>
                                         <th class="disabled-sorting text-right">Actions</th>
                                     </tr>
                                     </thead>
@@ -180,4 +181,216 @@
 
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function () {
+            fetchUser();
+            function fetchUser() {
+                $.ajax({
+                    type: "GET",
+                    url:"/fetchuser",
+                    dataType:"json",
+                    success: function (response) {
+                        // console.log(response.posts);
+
+                        $('tbody').html("");
+                        $.each(response.users, function (key, item){
+                            $('tbody').append('<tr>\
+                                            <td>'+item.id+'</td>\
+                                           <td>'+item.name+'</td>\
+                                           <td>'+item.email+'</td>\
+                                           <td>'+item.phone_number+'</td>\
+                                            <td><button type="button"  value="'+item.id+'" class="edit_btn btn btn-primary" ><i class="fa fa-edit"></i></button></td>\
+                                              <td><button type="button" value="'+item.id+'"  class="delete_post btn btn-danger" ><i class="fa fa-trash"></i></button></td>\
+                                            </tr>');
+                        });
+                    }
+                })
+            }
+
+            {{--delete--}}
+            $(document).on('click', '.delete_post', function (e){
+                e.preventDefault();
+
+                var post_id  = $(this).val();
+                // alert(post_id);
+
+                $('#delete_post_id').val(post_id);
+
+                $('#example2Modal').modal("show");
+
+            });
+            $(document).on('click', '.delete_post_btn', function (e){
+                e.preventDefault();
+
+
+                var post_id  = $('#delete_post_id').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type: "DELETE",
+                    url:"/delete-supplier/"+post_id,
+                    success: function (response){
+                        // console.log(response);
+                        $('#success_message').addClass("alert  alert_success");
+                        $('#success_message').text(response.message);
+                        $('#example2Modal').modal("hide");
+                        $('.delete_post_btn').text("yes Delete");
+                        fetchUser();
+                        swal.fire(
+                            'congratulation!',
+                            'user deleted successfully',
+                            'success'
+                        )
+                    }
+
+                });
+
+            });
+
+            {{--edit--}}
+            $(document).on('click', '.edit_btn', function (e){
+                e.preventDefault();
+                let post_id  = $(this).val();
+                // console.log(post_id);
+                $('#editModal').modal("show");
+                $.ajax({
+                    type: "GET",
+                    url:"/edit-supplier/"+post_id,
+
+                    success: function (response) {
+                        console.log(response);
+                        if (response.status == 404){
+                            $('#success_message').html("");
+                            $('#success_message').addClass('alert alert-danger');
+                            $('#success_message').text(response.message);
+
+                        }
+                        else{
+                            $("#edit_name").val(response.supplier.name);
+                            $("#edit_mobile_no").val(response.supplier.mobile_no);
+                            $("#address").val(response.supplier.address);
+                            $("#email").val(response.supplier.email);
+                            $("#edit_post_id").val(post_id);
+
+
+                        }
+
+                    }
+                });
+
+
+            });
+            {{--update--}}
+            $(document).on('click', '.update_supplier', function (e){
+                e.preventDefault();
+
+                let post_id  = $('#edit_post_id').val();
+                var data = {
+                    'name' : $('#edit_name').val(),
+                    'address' : $('#address').val(),
+                    'mobile_no' : $('#edit_mobile_no').val(),
+                    'email' : $('#email').val(),
+
+
+                }
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type: "PUT",
+                    url:"/update-product/"+post_id,
+                    data:data,
+                    dataType:"json",
+
+
+                    success: function (response){
+                        // console.log(response);
+                        if (response.status == 400)
+                        {
+                            $('#updateform_errList').html("");
+                            $('#updateform_errList').addClass("alert  alert-danger");
+                            $.each(response.errors, function (key, err_value) {
+                                $('#updateform_errList').append('<li>'+err_value+'</li>');
+                            })
+                        }
+                        else{
+                            $('#updateform_errList').html("");
+                            $('#success_message').addClass("alert  alert-success");
+                            $('#success_message').text(response.message);
+                            $('#editModal').modal("hide");
+                            fetchUser();
+                        }
+
+                    }
+                });
+
+            });
+
+
+            {{--add post--}}
+
+
+            $(document).on('click', '.add_user', function (e){
+                e.preventDefault();
+                // console.log('click');
+                var data = {
+                    'name' : $('.name').val(),
+                    'email' : $('.email').val(),
+                    'password' : $('.password').val(),
+                    'phone_number' : $('.phone_number').val(),
+
+                }
+                console.log(data);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url:"/register /",
+                    data:data,
+                    dataType:"json",
+
+                    success: function (response){
+                        // console.log(response);
+                        if (response.status == 400)
+                        {
+                            $('#saveform_errList').html("");
+                            $('#saveform_errList').addClass("alert  alert-danger");
+                            $.each(response.errors, function (key, err_value) {
+                                $('#saveform_errList').append('<li>'+err_value+'</li>');
+                            })
+                        }
+                        else{
+                            $('#saveform_errList').html("");
+                            $('#success_message').addClass("alert  alert-success");
+                            $('#success_message').text(response.message);
+                            $('#exampleModalLabel').modal("hide");
+                            $('#addModal').find("input").val("");
+                            fetchUser();
+                            swal.fire(
+                                'congratulation!',
+                                'user added successfully',
+                                'success'
+                            )
+                        }
+
+                    }
+                })
+            });
+
+
+        });
+    </script>
 @endsection

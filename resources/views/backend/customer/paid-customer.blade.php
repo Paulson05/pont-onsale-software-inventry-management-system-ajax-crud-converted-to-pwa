@@ -1,4 +1,4 @@
-@extends('backend.template.default')
+@extends('backend.template.defaults')
 @section('title', '| customer creadit report')
 @section('body')
     <div class="content">
@@ -37,7 +37,7 @@
                                     @foreach($allData as $data)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$data->customer->name}} {{$data->customer->mobile_no}}-{{$data->customer->address}} </td>
+{{--                                            <td>{{$data->customer->name}} {{$data->customer->mobile_no}}-{{$data->customer->address}} </td>--}}
                                             <td>{{$data->invoice->invoice_no}}</td>
                                             <td>{{date('d-m-y',strtotime($data->invoice->date))}}</td>
                                             <td>${{$data->due_amount}}</td>

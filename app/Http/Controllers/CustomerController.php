@@ -21,25 +21,25 @@ class CustomerController extends Controller
     }
     public function customerReport(){
        $customer = payment::whereIn('paid_status', ['Full paid', 'partial_paid'])->get();
-        return view('backend.pages.customer.creadit-customer-report')->with([
+        return view('backend.customer.creadit-customer-report')->with([
             'customer' => $customer,
         ]);
     }
 
     public  function customerReportPdf(){
         $data['customer'] = payment::whereIn('paid_status', ['Full paid', 'partial_paid'])->get();
-        $pdf = \PDF::loadView('backend.pages.pdf.credit-customer-report-pdf',$data);
+        $pdf = \PDF::loadView('backend.pdf.credit-customer-report-pdf',$data);
         return $pdf->stream('invoice.pdf');
     }
 public function invoiceDetailPdf($invoice_id){
       $data['payment'] =payment::where('invoice_id', $invoice_id)->first();
-    $pdf = \PDF::loadView('backend.pages.pdf.invoice-details-pdf',$data);
+    $pdf = \PDF::loadView('backend.pdf.invoice-details-pdf',$data);
     return $pdf->stream('invoice.pdf');
 }
 
 public function paidCustomer(){
         $allData = payment::where('paid_status', '!=', 'full_due')->get();
-        return view('backend.pages.customer.paid-customer')->with([
+        return view('backend.customer.paid-customer')->with([
             'allData' => $allData
         ]);
 

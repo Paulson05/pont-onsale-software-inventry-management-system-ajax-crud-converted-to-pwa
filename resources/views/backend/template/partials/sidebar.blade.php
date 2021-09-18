@@ -48,8 +48,8 @@
                 </li>
                 <li  class="{{ Route::currentRouteNamed('customer.wise.report') ? 'active' : '' }}" >
                     <a href="{{route('customer.wise.report')}}">
-                        <span class="sidebar-mini-icon">PC</span>
-                        <span class="sidebar-normal">Paid Cutomer</span>
+                        <span class="sidebar-mini-icon">CC</span>
+                        <span class="sidebar-normal">Credit Cutomer</span>
                     </a>
                 </li>
 

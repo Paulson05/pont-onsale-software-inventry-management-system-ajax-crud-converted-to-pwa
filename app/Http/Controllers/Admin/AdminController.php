@@ -14,6 +14,12 @@ class AdminController extends Controller
         $users= User::all();
         return view('backend.dashboard', [  'users' =>  $users]);
     }
+    public function fetchUser(){
+        $users = User::all();
+        return response()->json([
+            'users'=>$users,
+        ]);
+    }
     public  function logOut(){
 
         Auth::logout();

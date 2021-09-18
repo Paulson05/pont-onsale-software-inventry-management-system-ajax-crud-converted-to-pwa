@@ -1,4 +1,4 @@
-@extends('backend.template.default')
+@extends('backend.template.defaults')
 @section('title', '|supplier-product-wise')
 @section('body')
     <div class="content">
