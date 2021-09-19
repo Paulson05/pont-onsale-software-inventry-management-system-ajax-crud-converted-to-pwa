@@ -152,7 +152,7 @@
                                         <th>Mobile</th>
                                         <th>Role</th>
                                         <th>Permission</th>
-                                        <th class="disabled-sorting text-right">Actions</th>
+                                        <th>Actions</th>
                                     </tr>
                                     </thead>
 
@@ -195,11 +195,13 @@
                         // console.log(response.posts);
 
                         $('tbody').html("");
-                        $.each(response.users, function (key, item){
+                        $.each(response.users, function (key, item) {
                             $('tbody').append('<tr>\
                                             <td>'+item.id+'</td>\
                                            <td>'+item.name+'</td>\
                                            <td>'+item.email+'</td>\
+                                           <td>'+item.phone_number+'</td>\
+                                           <td>'+item.address+'</td>\
                                            <td>'+item.phone_number+'</td>\
                                             <td><button type="button"  value="'+item.id+'" class="edit_btn btn btn-primary" ><i class="fa fa-edit"></i></button></td>\
                                               <td><button type="button" value="'+item.id+'"  class="delete_post btn btn-danger" ><i class="fa fa-trash"></i></button></td>\
@@ -358,7 +360,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url:"/register /",
+                    url:"/postRegister/",
                     data:data,
                     dataType:"json",
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\StoreUserFormRequest;
+use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,11 +16,20 @@ class AdminController extends Controller
         $users= User::all();
         return view('backend.dashboard', [  'users' =>  $users]);
     }
+
+    public function postRegister(StoreUserFormRequest $request){
+
+     $user = User::create($request->validated());
+     return response()->json($user, 200);
+    }
     public function fetchUser(){
         $users = User::all();
-        return response()->json([
+        $us = Supplier::all();
+            $users = [
             'users'=>$users,
-        ]);
+              'us' =>  $us
+            ];
+        return response()->json($users);
     }
     public  function logOut(){
 

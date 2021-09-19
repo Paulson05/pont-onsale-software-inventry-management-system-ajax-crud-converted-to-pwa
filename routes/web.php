@@ -145,5 +145,6 @@ Route::get('/get-product', [DefaultController::class, 'getProduct'])->name('get-
 
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/logout', [AdminController::class, 'logOut'])->name('logOut');
+Route::post('/postRegister', [AdminController::class, 'postRegister']);
 Route::get('/fetchuser', [AdminController::class, 'fetchUser']);
 Auth::routes();
