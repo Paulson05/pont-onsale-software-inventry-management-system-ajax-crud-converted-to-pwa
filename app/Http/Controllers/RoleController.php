@@ -6,6 +6,7 @@ use App\Http\Requests\Role\StoreRoleFormRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RoleController extends Controller
 {
@@ -21,7 +22,25 @@ class RoleController extends Controller
 
     public function store(StoreRoleFormRequest $request)
     {
-        Role::create($request->validated());
+        $data= $request->all();
+        $slug=Str::slug($request->input('name'));
+        $slug_count=Role::where('slug', $slug)->count();
+        if ($slug_count){
+            $slug = time(). '_'. $slug;
+        }
+        $data['slug']=$slug;
+        $status=Role::create($data);
+        if ($status){
+            return response()->json([
+                'status' => 200,
+                'message' => 'Role added successfully',
+
+            ]);
+        }
+        else{
+            return redirect()->back();
+
+        }
 
 
         return response()->json([
@@ -32,7 +51,7 @@ class RoleController extends Controller
 
     }
     public function  fetchRole(){
-        $roles = Role::all();
+        $roles = Role::orderBy('id', 'desc')->get();
         return response()->json([
             'roles'=>$roles,
         ]);

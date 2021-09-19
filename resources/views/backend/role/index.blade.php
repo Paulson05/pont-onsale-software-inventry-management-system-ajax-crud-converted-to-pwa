@@ -72,6 +72,7 @@
                                        <tr>
                                            <th>S/N</th>
                                            <th>Name</th>
+                                           <th>Slug</th>
                                            <th>Action</th>
                                        </tr>
                                        </thead>
@@ -197,6 +198,7 @@
                             $('tbody').append('<tr>\
                                             <td>'+item.id+'</td>\
                                            <td>'+item.name+'</td>\
+                                           <td>'+item.slug+'</td>\
                                             <td><button type="button"  value="'+item.id+'" class="edit_unit btn btn-primary" ><i class="fa fa-edit"></i></button>\
                                             <button type="button" value="'+item.id+'"  class="delete_post btn btn-danger" ><i class="fa fa-trash"></i></button></td>\
                                           </tr>');
