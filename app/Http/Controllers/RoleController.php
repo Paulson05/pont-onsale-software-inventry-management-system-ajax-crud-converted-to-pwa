@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UnitFormRequest;
-use App\Models\unit;
+use App\Http\Requests\Role\StoreRoleFormRequest;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use PhpParser\Node\UnionType;
 
-class UnitController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,36 +16,25 @@ class UnitController extends Controller
      */
     public function index()
     {
-        return view ('backend.unit.index');
+        return view ('backend.role.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(StoreRoleFormRequest $request)
     {
-        //
-    }
+        Role::create($request->validated());
 
 
-    public function store(UnitFormRequest $request)
-    {
-        Unit::create($request->validated());
-
-
-            return response()->json([
-                'status' => 200,
-                'message' => 'post added successfully',
-
-            ]);
-
-    }
-    public function  fetchUnit(){
-        $units = Unit::all();
         return response()->json([
-            'units'=>$units,
+            'status' => 200,
+            'message' => 'post added successfully',
+
+        ]);
+
+    }
+    public function  fetchRole(){
+        $roles = Role::all();
+        return response()->json([
+            'roles'=>$roles,
         ]);
     }
 
@@ -59,13 +47,13 @@ class UnitController extends Controller
     public function edit($id)
     {
 
-        $unit =Unit::find($id);
+        $role =Role::find($id);
 
-        if ($unit)
+        if ($role)
         {
             return response()->json([
                 'status' => 200,
-                'unit' => $unit,
+                'role' => $role,
 
             ]);
         }
@@ -92,7 +80,7 @@ class UnitController extends Controller
                 'errors' => $validator->messages(),
             ]);
         }else{
-            $unit =  Unit::find($id);
+                $unit =  Role::find($id);
             $unit->name = $request->name;
 
 //        $supplier->created_by = Auth::user()->id;
@@ -108,7 +96,7 @@ class UnitController extends Controller
 
     public function destroy($id)
     {
-        $post = Unit::find($id);
+        $post = Role::find($id);
         $post->delete();
         return response()->json([
             'status' => 200,
@@ -116,4 +104,5 @@ class UnitController extends Controller
 
         ]);
     }
+
 }

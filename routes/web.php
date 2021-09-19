@@ -7,6 +7,7 @@ use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
@@ -142,6 +143,12 @@ Route::get('/report/product/wise/pdf', [StockController::class, 'productWiseRepo
 Route::get('/get-category', [DefaultController::class, 'getCategory'])->name('get-category');
 Route::get('/get-product', [DefaultController::class, 'getProduct'])->name('get-product');
 
+Route::get('/role', [RoleController::class, 'index'])->name('role.index');
+Route::post('/post-role', [RoleController::class, 'store']);
+Route::get('/fetch-role', [RoleController::class, 'fetchRole']);
+Route::get('/edit-role/{id}', [RoleController::class, 'edit']);
+Route::put('/update-role/{id}', [RoleController::class, 'update']);
+Route::delete('/delete-role/{id}', [RoleController::class, 'destroy']);
 
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/logout', [AdminController::class, 'logOut'])->name('logOut');

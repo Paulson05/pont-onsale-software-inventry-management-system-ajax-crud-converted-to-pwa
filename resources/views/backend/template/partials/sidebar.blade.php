@@ -11,6 +11,17 @@
         </a>
 
     </li>
+    <li >
+
+
+        <a href="{{route('role.index')}}">
+
+            <i class="now-ui-icons business_chart-pie-36"></i>
+
+            <p>Role</p>
+        </a>
+
+    </li>
 
     <li >
 
@@ -194,10 +205,10 @@
                     </a>
                 </li>
 
-                <li >
-                    <a href="forms/wizard.html">
-                        <span class="sidebar-mini-icon">W</span>
-                        <span class="sidebar-normal"> Wizard </span>
+                <li {{ Route::currentRouteNamed('role.index') ? 'active' : '' }} >
+                    <a href="{{Route('role.index')}}">
+                        <span class="sidebar-mini-icon">R</span>
+                        <span class="sidebar-normal">ROLE</span>
                     </a>
                 </li>
 
@@ -303,17 +314,7 @@
 
     </li>
 
-    <li >
 
-
-        <a href="charts.html">
-
-            <i class="now-ui-icons business_chart-pie-36"></i>
-
-            <p>Charts</p>
-        </a>
-
-    </li>
 
     <li >
 
