@@ -92,20 +92,21 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
-                                                <strong>password</strong>
-                                                <input type="password" name="password" id="password" class="password form-control" placeholder="password" >
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-6 text-left">
-                                            <div class="form-group">
                                                 <strong>Email</strong>
                                                 <input type="text" name="email" class="email form-control" placeholder="email">
 
                                             </div>
 
                                         </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6 text-left">
+                                            <div class="form-group">
+                                                <strong>password</strong>
+                                                <input type="password" name="password" id="password" class="password form-control" placeholder="password" >
+
+                                            </div>
+
+                                        </div>
+
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
                                                 <strong>Phone Number</strong>

@@ -11,7 +11,7 @@
         </a>
 
     </li>
-    <li >
+    <li class="{{ Route::currentRouteNamed('role.index') ? 'active' : '' }}">
 
 
         <a href="{{route('role.index')}}">
@@ -19,6 +19,17 @@
             <i class="now-ui-icons business_chart-pie-36"></i>
 
             <p>Role</p>
+        </a>
+
+    </li>
+    <li class="{{ Route::currentRouteNamed('permission.index') ? 'active' : '' }}">
+
+
+        <a href="{{route('permission.index')}}">
+
+            <i class="now-ui-icons business_chart-pie-36"></i>
+
+            <p>Permission</p>
         </a>
 
     </li>

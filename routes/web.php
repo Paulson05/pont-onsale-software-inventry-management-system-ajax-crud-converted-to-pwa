@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RoleController;
@@ -149,6 +150,17 @@ Route::get('/fetch-role', [RoleController::class, 'fetchRole']);
 Route::get('/edit-role/{id}', [RoleController::class, 'edit']);
 Route::put('/update-role/{id}', [RoleController::class, 'update']);
 Route::delete('/delete-role/{id}', [RoleController::class, 'destroy']);
+
+
+Route::get('/permission', [PermissionController::class, 'index'])->name('permission.index');
+Route::post('/post-permission', [PermissionController::class, 'store']);
+Route::get('/fetch-permissiom', [PermissionController::class, 'fetchRole']);
+Route::get('/edit-permission/{id}', [PermissionController::class, 'edit']);
+Route::put('/update-permission/{id}', [PermissionController::class, 'update']);
+Route::delete('/delete-permission/{id}', [PermissionController::class, 'destroy']);
+
+
+
 
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/logout', [AdminController::class, 'logOut'])->name('logOut');

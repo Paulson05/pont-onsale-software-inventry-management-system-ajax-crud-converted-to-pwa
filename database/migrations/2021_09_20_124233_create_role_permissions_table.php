@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRolePermisionsTable extends Migration
+class CreateRolePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateRolePermisionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_permisions', function (Blueprint $table) {
+        Schema::create('role_permissions', function (Blueprint $table) {
             $table->unsignedInteger('role_id');
-            $table->unsignedInteger('permission_id');
+            $table->unsignedInteger('permissions_id');
 
             $table->foreign('role_id')->references('id')->on('role')->onDelete('cascade');
             $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
@@ -31,6 +31,6 @@ class CreateRolePermisionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_permisions');
+        Schema::dropIfExists('role_permissions');
     }
 }

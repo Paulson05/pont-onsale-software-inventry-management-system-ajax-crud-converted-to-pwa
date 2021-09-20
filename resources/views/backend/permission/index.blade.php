@@ -1,11 +1,11 @@
 @extends('backend.template.defaults')
-@section('title', '| role')
+@section('title', '| permission')
 @section('body')
     <div class="content">
         <div class="container-fluid">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Roles</a></li>
+                    <li class="breadcrumb-item"><a href="#">Permission</a></li>
                     <li class="breadcrumb-item active" aria-current="page">({{\App\Models\Unit::count()}})</li>
                 </ol>
             </nav>
@@ -17,7 +17,7 @@
                             <div class="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Creat Role</h4>
+                                    <h4 class="modal-title">Creat Permission</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
 
@@ -32,23 +32,14 @@
 
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                             <div class="form-group">
-                                                <strong>Role name</strong>
-                                                <input type="text" name="name"  id="name" class="name form-control" placeholder="supplier name" >
+                                                <strong>permission name</strong>
+                                                <input type="text" name="name"  id="name" class="name form-control" placeholder="permission name" >
 
                                             </div>
 
                                         </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                            <label><strong>Permission:</strong></label><br>
-                                            <select name="name[]" id="cars" multiple class="form-control custom-select">
-                                                @foreach($tags as $tag)
 
 
-                                                    <option value="{{$tag->id}}">{{$tag->name}}</option>
-                                                @endforeach
-                                            </select>
-
-                                        </div>
 
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                             <button type="submit" class="add_unit btn btn-primary">Save</button>
@@ -352,7 +343,7 @@
                 console.log('click');
                 var data = {
                     'name' : $('.name').val(),
-                    'role_permissions' : $('.role_permissions').val(),
+
 
                 }
                 console.log(data);

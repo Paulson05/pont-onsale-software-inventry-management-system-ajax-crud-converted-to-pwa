@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Role\StoreRoleFormRequest;
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -22,6 +23,8 @@ class RoleController extends Controller
 
     public function store(StoreRoleFormRequest $request)
     {
+
+
         $data= $request->all();
         $slug=Str::slug($request->input('name'));
         $slug_count=Role::where('slug', $slug)->count();
@@ -29,7 +32,21 @@ class RoleController extends Controller
             $slug = time(). '_'. $slug;
         }
         $data['slug']=$slug;
-        $status=Role::create($data);
+
+        $listpermission = explode(',', $request->role_permissions);
+
+        foreach ($listpermission as $permission){
+
+           $permissions =new Permission();
+           $permissions->name = $permission;
+            $permissions->slug = strtolower(str_replace(" ", "-", $permission));
+            $permissions->save();
+
+            $data->permissions()->attach($permissions->id);
+
+            $status=$data->save();
+
+    }
         if ($status){
             return response()->json([
                 'status' => 200,
@@ -42,12 +59,6 @@ class RoleController extends Controller
 
         }
 
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'post added successfully',
-
-        ]);
 
     }
     public function  fetchRole(){
