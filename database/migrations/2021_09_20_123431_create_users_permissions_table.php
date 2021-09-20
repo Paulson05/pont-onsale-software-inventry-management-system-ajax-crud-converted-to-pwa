@@ -15,12 +15,12 @@ class CreateUsersPermissionsTable extends Migration
     {
         Schema::create('users_permissions', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('permissions_id');
+            $table->unsignedInteger('permission_id');
 
-            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
-            $table->foreign('permissions_id')->references('id')->on('permissions')->onDelete('cascade');
-
-            $table->primary(['user_id', 'permissions_id']);
+//            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
+//            $table->foreign('permission_id')->references('id')->on('permission')->onDelete('cascade');
+//
+//            $table->primary(['user_id', 'permission_id']);
 
          });
     }

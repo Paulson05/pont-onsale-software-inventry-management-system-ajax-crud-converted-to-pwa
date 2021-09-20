@@ -162,7 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
-
+        LaravelQRCode\Providers\QRCodeServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -233,6 +233,7 @@ return [
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
+        'QRCode' => LaravelQRCode\Facades\QRCode::class,
     ],
 
 ];

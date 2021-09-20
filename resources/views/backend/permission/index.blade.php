@@ -355,7 +355,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url:"/post-role/",
+                    url:"/post-permission/",
                     data:data,
                     dataType:"json",
 

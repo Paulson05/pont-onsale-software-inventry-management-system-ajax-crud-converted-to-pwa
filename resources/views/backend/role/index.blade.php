@@ -38,17 +38,17 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                            <label><strong>Permission:</strong></label><br>
-                                            <select name="name[]" id="cars" multiple class="form-control custom-select">
-                                                @foreach($tags as $tag)
-
-
-                                                    <option value="{{$tag->id}}">{{$tag->name}}</option>
-                                                @endforeach
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <label><strong>Permission</strong></label><br>
+                                            <select class="selectpicker" name="name[]"  data-style="btn btn-primary btn-round btn-block" multiple title="Choose City" data-size="7">
+                                                @forelse($permissions as $permmision)
+                                                    <option value="{{$permmision->id}}">{{$permmision->name}}</option>
+                                                @empty
+                                                    <p class="text-danger">no permission created</p>
+                                                @endforelse
                                             </select>
-
                                         </div>
+
 
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                             <button type="submit" class="add_unit btn btn-primary">Save</button>
@@ -352,7 +352,6 @@
                 console.log('click');
                 var data = {
                     'name' : $('.name').val(),
-                    'role_permissions' : $('.role_permissions').val(),
 
                 }
                 console.log(data);

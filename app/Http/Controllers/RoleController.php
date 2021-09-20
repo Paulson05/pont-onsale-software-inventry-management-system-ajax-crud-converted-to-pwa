@@ -18,7 +18,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view ('backend.role.index');
+        $permmisions = Permission::orderBy('id', 'desc')->get();
+        return view ('backend.role.index', ['permissions' => $permmisions]);
     }
 
     public function store(StoreRoleFormRequest $request)
@@ -33,20 +34,9 @@ class RoleController extends Controller
         }
         $data['slug']=$slug;
 
-        $listpermission = explode(',', $request->role_permissions);
-
-        foreach ($listpermission as $permission){
-
-           $permissions =new Permission();
-           $permissions->name = $permission;
-            $permissions->slug = strtolower(str_replace(" ", "-", $permission));
-            $permissions->save();
-
-            $data->permissions()->attach($permissions->id);
-
-            $status=$data->save();
-
-    }
+       $status = Role::create($data);
+        $status->permissions()->sync($request->name);
+        $status->save();
         if ($status){
             return response()->json([
                 'status' => 200,
