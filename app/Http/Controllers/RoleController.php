@@ -22,21 +22,23 @@ class RoleController extends Controller
         return view ('backend.role.index', ['permissions' => $permmisions]);
     }
 
-    public function store(StoreRoleFormRequest $request)
+
+    public function  fetchRole(){
+        $roles = Role::orderBy('id', 'desc')->get();
+        return response()->json([
+            'roles'=>$roles,
+        ]);
+    }
+
+    public function mystore(Request $request)
     {
 
 
-        $data= $request->all();
-        $slug=Str::slug($request->input('name'));
-        $slug_count=Role::where('slug', $slug)->count();
-        if ($slug_count){
-            $slug = time(). '_'. $slug;
-        }
-        $data['slug']=$slug;
 
-       $status = Role::create($data);
-        $status->permissions()->sync($request->name);
-        $status->save();
+        $post = Role::create(collect($request->only('name'))->all());
+         $post->permissions()->sync($request->permission);
+        $status =    $post->save();
+
         if ($status){
             return response()->json([
                 'status' => 200,
@@ -50,12 +52,6 @@ class RoleController extends Controller
         }
 
 
-    }
-    public function  fetchRole(){
-        $roles = Role::orderBy('id', 'desc')->get();
-        return response()->json([
-            'roles'=>$roles,
-        ]);
     }
 
     public function show(unit $unit)

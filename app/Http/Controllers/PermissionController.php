@@ -17,16 +17,9 @@ class PermissionController extends Controller
     public function store(StorePermissionFromRequest $request)
     {
 
-        $data= $request->all();
-        $slug=Str::slug($request->input('name'));
-        $slug_count=Role::where('slug', $slug)->count();
-        if ($slug_count){
-            $slug = time(). '_'. $slug;
-        }
-        $data['slug']=$slug;
 
+        $status= Permission::create(collect($request->only(['name']))->all());
 
-       $status = Permission::create($data);
         if ($status){
             return response()->json([
                 'status' => 200,

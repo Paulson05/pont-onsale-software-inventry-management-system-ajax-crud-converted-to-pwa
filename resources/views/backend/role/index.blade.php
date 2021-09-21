@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Roles</a></li>
+                    <li class="breadcrumb-item"><a href="#">Role</a></li>
                     <li class="breadcrumb-item active" aria-current="page">({{\App\Models\Unit::count()}})</li>
                 </ol>
             </nav>
@@ -17,7 +17,7 @@
                             <div class="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Creat Role</h4>
+                                    <h4 class="modal-title">Creat ROLE</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
 
@@ -30,29 +30,43 @@
 
                                     <div class="row">
 
+
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                             <div class="form-group">
-                                                <strong>Role name</strong>
-                                                <input type="text" name="name"  id="name" class="name form-control" placeholder="supplier name" >
+                                                <strong> ROLE name</strong>
+                                                <input type="text" name="name"  id="name" class="name form-control" placeholder="permission name" >
 
                                             </div>
 
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <label><strong>Permission</strong></label><br>
-                                            <select class="selectpicker" name="name[]"  data-style="btn btn-primary btn-round btn-block" multiple title="Choose City" data-size="7">
-                                                @forelse($permissions as $permmision)
-                                                    <option value="{{$permmision->id}}">{{$permmision->name}}</option>
-                                                @empty
-                                                    <p class="text-danger">no permission created</p>
-                                                @endforelse
-                                            </select>
-                                        </div>
+                                                       <div class="col-xs-12 col-sm-12 col-md-12 border-dark" style="border: 1px solid red !important; height: 120px !important;">
+
+
+                                                           <div class="form-group ">
+                                                               <strong>Tags:</strong><br>
+                                                               @php
+                                                                   $tags = \App\Models\Permission::all();
+                                                               @endphp
+
+                                                               <div class="form-check form-check-inline" >
+                                                                   @foreach($tags as $tag)
+                                                                       <label class="form-check-label"  >
+                                                                           <input class="name form-check-input" name="permission[]" type="checkbox" value="{{$tag->id}}">
+                                                                           <span class="name form-check-sign"></span>
+                                                                           {{$tag->name}}
+                                                                       </label>
+                                                                   @endforeach
+                                                               </div>
+
+                                                           </div>
+
+                                                       </div>
 
 
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                             <button type="submit" class="add_unit btn btn-primary">Save</button>
                                         </div>
+
                                     </div>
 
 
@@ -71,40 +85,40 @@
 
                 </div>
 
-                   <div class="col-md-12 table-responsive card">
-                       <div class="data-tables">
-                           <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
-                               <div class="toolbar">
-                                   <!--        Here you can write extra buttons/actions for the toolbar              -->
-                               </div>
-                               <div class="fresh-datatables">
-                                   <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                       <thead>
-                                       <tr>
-                                           <th>S/N</th>
-                                           <th>Name</th>
-                                           <th>Slug</th>
-                                           <th>Action</th>
-                                       </tr>
-                                       </thead>
+                <div class="col-md-12 table-responsive card">
+                    <div class="data-tables">
+                        <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
+                            <div class="toolbar">
+                                <!--        Here you can write extra buttons/actions for the toolbar              -->
+                            </div>
+                            <div class="fresh-datatables">
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>Name</th>
+                                        <th>Slug</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
 
-                                       <tbody>
-                                       <tr>
-                                           <td></td>
-                                           <td></td>
-                                           <td>
-                                               <button type="button"   class="edit_unit btn btn-primary" ><i class="fa fa-edit"></i></button>
-                                               <button type="button"   class="delete_post btn btn-primary" ><i class="fa fa-trash"></i></button>
-                                           </td>
+                                    <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <button type="button"   class="edit_unit btn btn-primary" ><i class="fa fa-edit"></i></button>
+                                            <button type="button"   class="delete_post btn btn-primary" ><i class="fa fa-trash"></i></button>
+                                        </td>
 
 
-                                       </tr>
-                                       </tbody>
-                                   </table>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -331,11 +345,11 @@
                             $('#success_message').text(response.message);
                             $('#editModal').modal("hide");
                             fetchrole();
-                             swal.fire(
-                                 'congratulation!',
-                                 'edit updated successfully',
-                                 'success'
-                             )
+                            swal.fire(
+                                'congratulation!',
+                                'edit updated successfully',
+                                'success'
+                            )
                         }
 
                     }
@@ -353,6 +367,7 @@
                 var data = {
                     'name' : $('.name').val(),
 
+
                 }
                 console.log(data);
                 $.ajaxSetup({
@@ -363,7 +378,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url:"/post-role/",
+                    url:"/post-permission/",
                     data:data,
                     dataType:"json",
 
@@ -386,7 +401,7 @@
                             fetchrole();
                             swal.fire(
                                 'congratulation!',
-                                'role added successfully',
+                                'role with permission added successfully',
                                 'success'
                             )
                         }
