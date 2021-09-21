@@ -30,19 +30,16 @@ class RoleController extends Controller
         ]);
     }
 
-    public function mystore(Request $request)
+    public function store(Request $request)
     {
 
-
-
-        $post = Role::create(collect($request->only('name'))->all());
-         $post->permissions()->sync($request->permission);
+        $post = Role::create(collect($request->only(['name','slug']))->all());
+        $post->permissions()->sync($request->permissions);
         $status =    $post->save();
-
         if ($status){
             return response()->json([
                 'status' => 200,
-                'message' => 'Role added successfully',
+                'message' => 'role and permission added successfully',
 
             ]);
         }
@@ -50,8 +47,6 @@ class RoleController extends Controller
             return redirect()->back();
 
         }
-
-
     }
 
     public function show(unit $unit)
@@ -88,6 +83,7 @@ class RoleController extends Controller
         $validator = Validator::make($request->all(),[
 
             'name' => 'required',
+            'slug' => 'required',
 
         ]);
         if ($validator->fails()) {

@@ -17,7 +17,7 @@
                             <div class="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Creat ROLE</h4>
+                                    <h4 class="modal-title">Creat Permission</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
 
@@ -30,7 +30,6 @@
 
                                     <div class="row">
 
-
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                             <div class="form-group">
                                                 <strong> ROLE name</strong>
@@ -39,6 +38,14 @@
                                             </div>
 
                                         </div>
+                                                       <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                                                           <div class="form-group">
+                                                               <strong>Slug</strong>
+                                                               <input type="text" name="slug"  id="slug" class="slug form-control" placeholder="slug" >
+
+                                                           </div>
+
+                                                       </div>
                                                        <div class="col-xs-12 col-sm-12 col-md-12 border-dark" style="border: 1px solid red !important; height: 120px !important;">
 
 
@@ -51,7 +58,7 @@
                                                                <div class="form-check form-check-inline" >
                                                                    @foreach($tags as $tag)
                                                                        <label class="form-check-label"  >
-                                                                           <input class="name form-check-input" name="permission[]" type="checkbox" value="{{$tag->id}}">
+                                                                           <input class="name form-check-input" name="permissions[]" type="checkbox" value="{{$tag->id}}">
                                                                            <span class="name form-check-sign"></span>
                                                                            {{$tag->name}}
                                                                        </label>
@@ -366,6 +373,7 @@
                 console.log('click');
                 var data = {
                     'name' : $('.name').val(),
+                    'slug' : $('.slug').val(),
 
 
                 }
@@ -378,7 +386,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url:"/post-permission/",
+                    url:"/post-role/",
                     data:data,
                     dataType:"json",
 
@@ -401,7 +409,7 @@
                             fetchrole();
                             swal.fire(
                                 'congratulation!',
-                                'role with permission added successfully',
+                                'role and permission added successfully',
                                 'success'
                             )
                         }

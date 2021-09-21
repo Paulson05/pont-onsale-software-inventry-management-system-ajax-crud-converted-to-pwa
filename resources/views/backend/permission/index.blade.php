@@ -378,7 +378,7 @@
                             fetchrole();
                             swal.fire(
                                 'congratulation!',
-                                'role added successfully',
+                                'permission added successfully',
                                 'success'
                             )
                         }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreUserFormRequest;
+use App\Models\Role;
 use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,7 +17,14 @@ class AdminController extends Controller
         $users= User::all();
         return view('backend.dashboard', [  'users' =>  $users]);
     }
-
+  public function create(Request $request){
+      if ($request->ajax()){
+          $roles = Role::where('id', $request->id)->first();
+          dd($roles);
+          $permissions = $roles->permissions;
+          return   $permissions;
+      }
+  }
     public function postRegister(StoreUserFormRequest $request){
 
      $user = User::create($request->validated());

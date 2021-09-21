@@ -17,8 +17,9 @@ class PermissionController extends Controller
     public function store(StorePermissionFromRequest $request)
     {
 
+        $status = Permission::create($request->validated());
 
-        $status= Permission::create(collect($request->only(['name']))->all());
+
 
         if ($status){
             return response()->json([
