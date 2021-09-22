@@ -1,0 +1,35 @@
+{
+  "name": "ponit_on_sale",
+  "short_name": "pos",
+  "icons": [{
+    "src": "images/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+
+    }, {
+      "src": "images/thumbnail.png",
+      "sizes": "1000x667",
+      "type": "image/png"
+    }, {
+      "src": "images/thumbnail.png",
+      "sizes": "1000x667",
+      "type": "image/png"
+    }, {
+      "src": "images/thumbnail.png",
+      "sizes": "1000x667",
+      "type": "image/png"
+    }, {
+      "src": "images/thumbnail.png",
+      "sizes": "1000x667",
+      "type": "image/png"
+    }, {
+      "src": "images/thumbnail.png",
+      "sizes": "1000x667",
+      "type": "image/png"
+    }],
+  "lang": "en-US",
+  "start_url": "/product",
+  "display": "standalone",
+  "background_color": "green",
+  "theme_color": "red"
+}

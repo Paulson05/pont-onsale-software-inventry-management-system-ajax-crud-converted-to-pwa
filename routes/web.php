@@ -146,7 +146,7 @@ Route::get('/get-product', [DefaultController::class, 'getProduct'])->name('get-
 
 Route::get('/role', [RoleController::class, 'index'])->name('role.index');
 Route::post('/post-role', [RoleController::class, 'store']);
-//Route::post('/post-role2', [RoleController::class, 'mystore'])->name('mystore');
+Route::post('/post-role2', [RoleController::class, 'mystore'])->name('mystore');
 Route::get('/fetch-role', [RoleController::class, 'fetchRole']);
 Route::get('/edit-role/{id}', [RoleController::class, 'edit']);
 Route::put('/update-role/{id}', [RoleController::class, 'update']);
@@ -167,5 +167,7 @@ Route::get('/admin', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/user-create', [AdminController::class, 'create'])->name('create');
 Route::get('/logout', [AdminController::class, 'logOut'])->name('logOut');
 Route::post('/postRegister', [AdminController::class, 'postRegister']);
+
+
 Route::get('/fetchuser', [AdminController::class, 'fetchUser']);
 Auth::routes();

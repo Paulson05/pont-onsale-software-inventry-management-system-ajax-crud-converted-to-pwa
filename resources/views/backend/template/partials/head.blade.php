@@ -6,6 +6,7 @@
 <link rel="icon" type="image/png" href="../assets/img/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css" />
+<link rel="manifest" href="/manifest.json">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <title>

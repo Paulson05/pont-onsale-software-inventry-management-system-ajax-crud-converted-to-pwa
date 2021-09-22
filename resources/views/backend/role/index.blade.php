@@ -25,19 +25,20 @@
                                 <div class="modal-body">
 
 
+                             <form method="post" action="{{route('mystore')}}">
 
-
-
+                                        @csrf
                                     <div class="row">
 
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                            <div class="form-group">
-                                                <strong> ROLE name</strong>
-                                                <input type="text" name="name"  id="name" class="name form-control" placeholder="permission name" >
+                                                       <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                                                            <div class="form-group">
 
-                                            </div>
+                                                                <strong> ROLE name</strong>
+                                                                <input type="text" name="name"  id="name" class="name form-control" placeholder="role name" >
 
-                                        </div>
+                                                            </div>
+
+                                                        </div>
                                                        <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                                            <div class="form-group">
                                                                <strong>Slug</strong>
@@ -46,11 +47,11 @@
                                                            </div>
 
                                                        </div>
-                                                       <div class="col-xs-12 col-sm-12 col-md-12 border-dark" style="border: 1px solid red !important; height: 120px !important;">
+                                                       <div class="col-xs-12 col-sm-12 col-md-12 text-left" >
 
 
                                                            <div class="form-group ">
-                                                               <strong>Tags:</strong><br>
+                                                               <strong>Permission:</strong><br>
                                                                @php
                                                                    $tags = \App\Models\Permission::all();
                                                                @endphp
@@ -77,7 +78,7 @@
                                     </div>
 
 
-
+                             </form>
 
                                 </div>
 
@@ -368,55 +369,55 @@
             {{--add post--}}
 
 
-            $(document).on('click', '.add_unit', function (e){
-                e.preventDefault();
-                console.log('click');
-                var data = {
-                    'name' : $('.name').val(),
-                    'slug' : $('.slug').val(),
-
-
-                }
-                console.log(data);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    type: "POST",
-                    url:"/post-role/",
-                    data:data,
-                    dataType:"json",
-
-                    success: function (response){
-                        // console.log(response);
-                        if (response.status == 400)
-                        {
-                            $('#saveform_errList').html("");
-                            $('#saveform_errList').addClass("alert  alert-danger");
-                            $.each(response.errors, function (key, err_value) {
-                                $('#saveform_errList').append('<li>'+err_value+'</li>');
-                            })
-                        }
-                        else{
-                            $('#saveform_errList').html("");
-                            $('#success_message').addClass("alert  alert-success");
-                            $('#success_message').text(response.message);
-                            $('#addModal').modal("hide");
-                            $('#addModal').find("input").val("");
-                            fetchrole();
-                            swal.fire(
-                                'congratulation!',
-                                'role and permission added successfully',
-                                'success'
-                            )
-                        }
-
-                    }
-                })
-            });
+            // $(document).on('click', '.add_unit', function (e){
+            //     e.preventDefault();
+            //     console.log('click');
+            //     var data = {
+            //         'name' : $('.name').val(),
+            //         'slug' : $('.slug').val(),
+            //
+            //
+            //     }
+            //     console.log(data);
+            //     $.ajaxSetup({
+            //         headers: {
+            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //         }
+            //     });
+            //
+            //     $.ajax({
+            //         type: "POST",
+            //         url:"/post-role/",
+            //         data:data,
+            //         dataType:"json",
+            //
+            //         success: function (response){
+            //             // console.log(response);
+            //             if (response.status == 400)
+            //             {
+            //                 $('#saveform_errList').html("");
+            //                 $('#saveform_errList').addClass("alert  alert-danger");
+            //                 $.each(response.errors, function (key, err_value) {
+            //                     $('#saveform_errList').append('<li>'+err_value+'</li>');
+            //                 })
+            //             }
+            //             else{
+            //                 $('#saveform_errList').html("");
+            //                 $('#success_message').addClass("alert  alert-success");
+            //                 $('#success_message').text(response.message);
+            //                 $('#addModal').modal("hide");
+            //                 $('#addModal').find("input").val("");
+            //                 fetchrole();
+            //                 swal.fire(
+            //                     'congratulation!',
+            //                     'role and permission added successfully',
+            //                     'success'
+            //                 )
+            //             }
+            //
+            //         }
+            //     })
+            // });
 
 
         });

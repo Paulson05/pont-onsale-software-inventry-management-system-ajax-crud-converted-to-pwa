@@ -30,7 +30,7 @@ class RoleController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function mystore(Request $request)
     {
 
         $post = Role::create(collect($request->only(['name','slug']))->all());

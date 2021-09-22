@@ -118,13 +118,11 @@
                                         <div class="col-xs-12 col-sm-12 col-md-16 text-left">
                                             <div class="form-group">
                                                 <strong>select role</strong>
-                                                @php
-                                                    $collect = \App\Models\Role::all()
-                                                @endphp
+
                                                 <select class="selectpicker" id="role" name="role" data-size="7" data-style="btn btn-primary btn-round btn-block" title="Single Select">
-                                                    <option disabled selected>select role</option>
-                                                   @forelse($collect as $item)
-                                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                                    <option >select role</option>
+                                                   @forelse($roles as $role)
+                                                    <option data-role-id="{{$role->id}}"  data-role-slug="{{$role->slug}}"  value="{{$role->id}}">{{$role->name}}</option>
                                                     @empty
                                                     <p class="text-danger">no role yet</p>
                                                     @endforelse
@@ -134,9 +132,12 @@
 
                                         </div>
                                         <div id="permissions_box" class="col-xs-12 col-sm-12 col-md-16 text-left">
-                                            <strong>select permission</strong>
+                                            <label >select permission</label>
                                             <div id="permissions_checkbox_list"></div>
                                         </div>
+
+
+
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                             <button type="submit" class="add_user btn btn-primary">Save</button>
                                         </div>
@@ -213,32 +214,35 @@
             permissions_box.hide();
             $('#role').on('change', function (){
                 var role = $(this).find(':selected');
-                var role_id = role.data('id');
-                var role_slug = role.data('slug');
+
+                var role_id = role.data('role-id');
+                var role_slug = role.data('role-slug');
+
 
                 $.ajax({
-                    url: "/user-create/",
+                    url: "/admin/",
                     method: 'get',
                     dataType: 'json',
                     data:{
-                        id:id,
-                        slug:slug,
+                        role_id: role_id,
+                        role_slug: role_slug,
                     }
-                }).done(function (data){
-                    console.log(data);
+                }).done(function(data){
 
                     permissions_box.show();
+                    permissions_checkbox_list.empty();
+                    $.each(data, function(index, element){
+                        $.each(data, function(index, element){
+                            $('#permissions_checkbox_list').append(
+                                '<div class="custom-control custom-checkbox" >'+
+                                '<input class="custom-control-input" type="checkbox" name="permissions[]" id="'+ element.slug +'" value="'+ element.id +'" >' +
+                                '<label class="custom-control-label" for="'+ element.slug +'">'+ element.name +'</label>'+
+                                '</div>'
+                            );
+                        });
+                    });
+                });
 
-                    $.each(data, function (index, element){
-                        $(permissions_checkbox_list).append(
-
-                            '<div class="custom-control custom-checkbox">' +
-                                '<input class="custom-control-input" type="checkbox" name="permissions[]">'+
-                                  '<label class="custom-control-label" for="'+element.slug+'">'+ element.name+'</lable>'+
-                            '</div>'
-                        )
-                    })
-                })
             });
             fetchUser();
             function fetchUser() {

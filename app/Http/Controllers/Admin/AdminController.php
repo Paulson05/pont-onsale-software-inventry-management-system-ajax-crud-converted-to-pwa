@@ -12,23 +12,41 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function dashboard(){
+    public function dashboard(Request  $request){
 
         $users= User::all();
-        return view('backend.dashboard', [  'users' =>  $users]);
+        $roles = Role::all();
+        if ($request->ajax()){
+
+            $roles = Role::where('id', $request->role_id)->first();
+
+            $permissions = $roles->permissions;
+            return   $permissions;
+        }
+        return view('backend.dashboard', [  'users' =>  $users, 'roles' =>$roles]);
     }
   public function create(Request $request){
-      if ($request->ajax()){
-          $roles = Role::where('id', $request->id)->first();
-          dd($roles);
-          $permissions = $roles->permissions;
-          return   $permissions;
-      }
+
   }
     public function postRegister(StoreUserFormRequest $request){
 
      $user = User::create($request->validated());
-     return response()->json($user, 200);
+        if($request->role != null){
+            $user->roles()->sync($request->role);
+            $user->save();
+        }
+
+        if($request->permissions != null){
+            foreach ($request->permissions as $permission) {
+                $user->permissions()->sync($permission);
+                $user->save();
+            }
+        }
+        return response()->json([
+            'status' => 200,
+            'message' => 'new user added successfully',
+
+        ]);
     }
     public function fetchUser(){
         $users = User::all();
