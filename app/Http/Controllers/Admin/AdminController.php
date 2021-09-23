@@ -9,6 +9,7 @@ use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -30,10 +31,11 @@ class AdminController extends Controller
   }
     public function postRegister(StoreUserFormRequest $request){
 
-     $user = User::create($request->validated());
+           dd($request->all());
+        $user =   User::create(collect($request->only(['name','email','phone_number','category_id']))->put('password',bcrypt($request->password))->all());
         if($request->role != null){
-            $user->roles()->sync($request->role);
-            $user->save();
+           $user->roles()->sync($request->role);
+         $user->save();
         }
 
         if($request->permissions != null){
@@ -50,10 +52,8 @@ class AdminController extends Controller
     }
     public function fetchUser(){
         $users = User::all();
-        $us = Supplier::all();
             $users = [
             'users'=>$users,
-              'us' =>  $us
             ];
         return response()->json($users);
     }

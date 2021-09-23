@@ -5,9 +5,9 @@ use App\Models\Role;
 trait HasRolesAndPermission
 {
     public function roles(){
-        return $this->belogsToMany(Role::class, 'users_role');
+        return $this->belongsToMany(Role::class, 'users_role', 'users_id', 'role_id'  );
      }
     public function permissions(){
-        return $this->belogsToMany(Permission::class, 'users_permission');
+        return $this->belongsToMany(Permission::class, 'users_permission', 'users_id', 'permission_id'  );
     }
 }

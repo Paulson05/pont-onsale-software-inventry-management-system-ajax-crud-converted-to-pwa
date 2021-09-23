@@ -209,7 +209,7 @@
     <script>
         $(document).ready(function () {
             var permissions_box = $('#permissions_box');
-            var permissions_checkbox_list = $('#permission_checkbox_list');
+            var permissions_checkbox_list = $('#permissions_checkbox_list');
 
             permissions_box.hide();
             $('#role').on('change', function (){
@@ -233,12 +233,13 @@
                     permissions_checkbox_list.empty();
                     $.each(data, function(index, element){
                         $.each(data, function(index, element){
-                            $('#permissions_checkbox_list').append(
+                            $(permissions_checkbox_list).append(
                                 '<div class="custom-control custom-checkbox" >'+
-                                '<input class="custom-control-input" type="checkbox" name="permissions[]" id="'+ element.slug +'" value="'+ element.id +'" >' +
-                                '<label class="custom-control-label" for="'+ element.slug +'">'+ element.name +'</label>'+
+                                    '<input class="permissions custom-control-input" type="checkbox" name="permissions[]"  id="'+element.slug+'">'+
+                                    '<label class="custom-control-label" for="'+element.slug+'">'+element.name+'</label>'+
                                 '</div>'
                             );
+
                         });
                     });
                 });
@@ -408,6 +409,8 @@
                     'email' : $('.email').val(),
                     'password' : $('.password').val(),
                     'phone_number' : $('.phone_number').val(),
+                    'role' : $('#role').val(),
+                    'permissions' : $('input[name="permissions[]"]:checked').val(),
 
                 }
                 console.log(data);

@@ -18,6 +18,7 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+
     protected $guarded = [];
 
     /**
@@ -38,4 +39,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
 }
