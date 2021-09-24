@@ -52,18 +52,12 @@
 
                                                            <div class="form-group ">
                                                                <strong>Permission:</strong><br>
-                                                               @php
-                                                                   $tags = \App\Models\Permission::all();
-                                                               @endphp
 
-                                                               <div class="form-check form-check-inline" >
-                                                                   @foreach($tags as $tag)
-                                                                       <label class="form-check-label"  >
-                                                                           <input class="name form-check-input" name="permissions[]" type="checkbox" value="{{$tag->id}}">
-                                                                           <span class="name form-check-sign"></span>
-                                                                           {{$tag->name}}
-                                                                       </label>
-                                                                   @endforeach
+                                                               <div class="" >
+
+                                                                       <label for="roles_permission"  >add permission</label>
+                                                                   <input class="form-control" id="roles_permissions" name="roles_permissions" type="text" value="">
+
                                                                </div>
 
                                                            </div>

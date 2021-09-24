@@ -29,10 +29,9 @@ class AdminController extends Controller
   public function create(Request $request){
 
   }
-    public function postRegister(StoreUserFormRequest $request){
+    public function postRegister(Request $request){
 
-           dd($request->all());
-        $user =   User::create(collect($request->only(['name','email','phone_number','category_id']))->put('password',bcrypt($request->password))->all());
+        $user =   User::create(collect($request->only(['name','email','phone_number']))->put('password',bcrypt($request->password))->all());
         if($request->role != null){
            $user->roles()->sync($request->role);
          $user->save();
@@ -40,15 +39,11 @@ class AdminController extends Controller
 
         if($request->permissions != null){
             foreach ($request->permissions as $permission) {
-                $user->permissions()->sync($permission);
+                $user->permissions()->attach($permission);
                 $user->save();
             }
         }
-        return response()->json([
-            'status' => 200,
-            'message' => 'new user added successfully',
-
-        ]);
+       return redirect()->back();
     }
     public function fetchUser(){
         $users = User::all();

@@ -80,8 +80,13 @@
 
 
 
-                                    <div class="row">
 
+
+                                    <form method="post" action="{{route('post.register')}}">
+
+                                        @csrf
+
+                                            <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
                                                 <strong>User name</strong>
@@ -115,34 +120,66 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-16 text-left">
-                                            <div class="form-group">
-                                                <strong>select role</strong>
 
-                                                <select class="selectpicker" id="role" name="role" data-size="7" data-style="btn btn-primary btn-round btn-block" title="Single Select">
-                                                    <option >select role</option>
-                                                   @forelse($roles as $role)
-                                                    <option data-role-id="{{$role->id}}"  data-role-slug="{{$role->slug}}"  value="{{$role->id}}">{{$role->name}}</option>
-                                                    @empty
-                                                    <p class="text-danger">no role yet</p>
-                                                    @endforelse
-                                                </select>
 
-                                            </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 border-dark text-left">
 
-                                        </div>
-                                        <div id="permissions_box" class="col-xs-12 col-sm-12 col-md-16 text-left">
-                                            <label >select permission</label>
-                                            <div id="permissions_checkbox_list"></div>
-                                        </div>
 
+                                                    <div class="form-group ">
+                                                        <strong>Roles:</strong><br>
+                                                        @php
+                                                            $tags = \App\Models\Role::all();
+                                                        @endphp
+
+                                                        <div class="form-check form-check-inline" >
+                                                            @foreach($tags as $tag)
+                                                                <label class="form-check-label"  >
+                                                                    <input class="name form-check-input" name="role" type="checkbox" value="{{$tag->id}}">
+                                                                    <span class="name form-check-sign"></span>
+                                                                    {{$tag->name}}
+                                                                </label>
+                                                            @endforeach
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+{{--                                        <div id="permissions_box" class="col-xs-12 col-sm-12 col-md-16 text-left">--}}
+{{--                                            <label for="roles" >select permission</label>--}}
+{{--                                            <div id="permissions_checkbox_list"></div>--}}
+
+{{--                                        </div>--}}
+                                                <div class="col-xs-12 col-sm-12 col-md-12 border-dark text-left">
+
+
+                                                    <div class="form-group ">
+                                                        <strong>Permmisions:</strong><br>
+                                                        @php
+                                                            $tags = \App\Models\Permission::all();
+                                                        @endphp
+
+                                                        <div class="form-check form-check-inline" >
+                                                            @foreach($tags as $tag)
+                                                                <label class="form-check-label"  >
+                                                                    <input class="name form-check-input" name="permissions[]" type="checkbox" value="{{$tag->id}}">
+                                                                    <span class="name form-check-sign"></span>
+                                                                    {{$tag->name}}
+                                                                </label>
+                                                            @endforeach
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
 
 
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                             <button type="submit" class="add_user btn btn-primary">Save</button>
                                         </div>
+
                                     </div>
 
+                                    </form>
 
 
 
@@ -159,8 +196,8 @@
 
                 </div>
                 <div class="col-md-12 table-responsive card">
-                    <div class="data-tables">
-                        <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
+                    <div class="card-body data-tables">
+                        <div class="table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
                             <div class="toolbar">
                                 <!--        Here you can write extra buttons/actions for the toolbar              -->
                             </div>
@@ -233,7 +270,7 @@
                     permissions_checkbox_list.empty();
                     $.each(data, function(index, element){
                         $.each(data, function(index, element){
-                            $(permissions_checkbox_list).append(
+                            $('#permissions_checkbox_list').append(
                                 '<div class="custom-control custom-checkbox" >'+
                                     '<input class="permissions custom-control-input" type="checkbox" name="permissions[]"  id="'+element.slug+'">'+
                                     '<label class="custom-control-label" for="'+element.slug+'">'+element.name+'</label>'+
@@ -271,7 +308,7 @@
                 })
             }
 
-            {{--delete--}}
+            delete
             $(document).on('click', '.delete_post', function (e){
                 e.preventDefault();
 
@@ -315,7 +352,7 @@
 
             });
 
-            {{--edit--}}
+            edit
             $(document).on('click', '.edit_btn', function (e){
                 e.preventDefault();
                 let post_id  = $(this).val();
@@ -348,7 +385,7 @@
 
 
             });
-            {{--update--}}
+            update
             $(document).on('click', '.update_supplier', function (e){
                 e.preventDefault();
 
@@ -398,13 +435,13 @@
             });
 
 
-            {{--add post--}}
+           // add post
 
 
             $(document).on('click', '.add_user', function (e){
                 e.preventDefault();
                 // console.log('click');
-                var data = {
+               var data = {
                     'name' : $('.name').val(),
                     'email' : $('.email').val(),
                     'password' : $('.password').val(),
@@ -422,7 +459,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url:"/postRegister/",
+                  url:"/postRegister/",
                     data:data,
                     dataType:"json",
 
@@ -433,7 +470,7 @@
                             $('#saveform_errList').html("");
                             $('#saveform_errList').addClass("alert  alert-danger");
                             $.each(response.errors, function (key, err_value) {
-                                $('#saveform_errList').append('<li>'+err_value+'</li>');
+                             $('#saveform_errList').append('<li>'+err_value+'</li>');
                             })
                         }
                         else{
@@ -452,7 +489,7 @@
 
                     }
                 })
-            });
+           });
 
 
         });

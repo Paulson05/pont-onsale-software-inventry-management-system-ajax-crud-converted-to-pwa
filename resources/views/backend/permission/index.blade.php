@@ -33,7 +33,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                             <div class="form-group">
                                                 <strong>permission name</strong>
-                                                <input type="text" name="name"  id="name" class="name form-control" placeholder="permission name" >
+                                                <input type="text" name="roles_permissions"  id="name" class="name form-control" placeholder="permission name" >
 
                                             </div>
 

@@ -166,7 +166,7 @@ Route::delete('/delete-permission/{id}', [PermissionController::class, 'destroy'
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/user-create', [AdminController::class, 'create'])->name('create');
 Route::get('/logout', [AdminController::class, 'logOut'])->name('logOut');
-Route::post('/postRegister', [AdminController::class, 'postRegister']);
+Route::post('/post-register', [AdminController::class, 'postRegister'])->name('post.register');
 
 
 Route::get('/fetchuser', [AdminController::class, 'fetchUser']);

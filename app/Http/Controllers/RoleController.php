@@ -33,9 +33,33 @@ class RoleController extends Controller
     public function mystore(Request $request)
     {
 
-        $post = Role::create(collect($request->only(['name','slug']))->all());
-        $post->permissions()->sync($request->permissions);
-        $status =    $post->save();
+//        $post = Role::create(collect($request->only(['name','slug']))->all());
+//        $post->permissions()->sync($request->permissions);
+//        $status =    $post->save();
+
+        //validate the role fields
+        $request->validate([
+            'name' => 'required|max:255',
+            'slug' => 'required|max:255'
+        ]);
+
+        $role = new Role();
+
+        $role->name = $request->name;
+        $role->slug = $request->slug;
+        $role-> save();
+
+        $listOfPermissions = explode(',', $request->roles_permissions);//create array from separated/coma permissions
+
+        foreach ($listOfPermissions as $permission) {
+            $permissions = new Permission();
+            $permissions->name = $permission;
+            $permissions->slug = strtolower(str_replace(" ", "-", $permission));
+            $permissions->save();
+            $role->permissions()->attach($permissions->id);
+            $status =    $role->save();
+        }
+
         if ($status){
             return response()->json([
                 'status' => 200,
