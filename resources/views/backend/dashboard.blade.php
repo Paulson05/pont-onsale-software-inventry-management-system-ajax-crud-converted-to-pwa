@@ -13,7 +13,7 @@
                                         <i class="now-ui-icons ui-2_chat-round"></i>
                                     </div>
                                     <h3 class="info-title">{{\App\Models\Customer::count()}}</h3>
-                                    <h6 class="stats-title">Customer</h6>
+                                    <h6 class="stats-title"><a href="{{route('customer.index')}}">Customer</a></h6>
                                 </div>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                                         <i class="now-ui-icons business_money-coins"></i>
                                     </div>
                                     <h3 class="info-title">{{\App\Models\Supplier::count()}}</h3>
-                                    <h6 class="stats-title">Supplier</h6>
+                                    <h6 class="stats-title"><a href="{{route('supplier.index')}}">Supplier</a></h6>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                                         <i class="now-ui-icons users_single-02"></i>
                                     </div>
                                     <h3 class="info-title">{{\App\Models\Category::count()}}</h3>
-                                    <h6 class="stats-title">Category</h6>
+                                    <h6 class="stats-title"><a href="{{route('category.index')}}">Category</a></h6>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                                         <i class="now-ui-icons objects_support-17"></i>
                                     </div>
                                     <h3 class="info-title">{{\App\Models\Product::count()}}</h3>
-                                    <h6 class="stats-title">Product</h6>
+                                    <h6 class="stats-title"><a href="{{route('product.index')}}">Product</a></h6>
                                 </div>
                             </div>
                         </div>

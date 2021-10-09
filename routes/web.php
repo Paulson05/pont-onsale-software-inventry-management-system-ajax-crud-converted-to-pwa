@@ -74,7 +74,7 @@ Route::delete('/delete-category/{id}', [CategoryController::class, 'destroy']);
 //supplier
  Route::resource('/supplier',SupplierController::class)->except('create');
 
-Route::post('/post-supplier', [SupplierController::class, 'store']);
+Route::post('/post-supplier', [SupplierController::class, 'store'])->name('supplier.store');
 Route::get('/fetchsupplier', [SupplierController::class, 'fetchsupplier']);
 Route::get('/edit-supplier/{id}', [SupplierController::class, 'edit']);
 Route::put('/update-product/{id}', [SupplierController::class, 'update']);

@@ -23,54 +23,59 @@
                                 </div>
 
                                 <!-- Modal body -->
-                                <div class="modal-body">
-                                    <ul id="saveform_errList"></ul>
+                                <div class="modal-body ">
+                                    <ul class="list-unstyled text-center " id="saveform_errList"></ul>
 
 
 
+                                            <form  action="{{route('supplier.store')}}" method="post" data-ajax-form>
+                                                @csrf
 
                                     <div class="row">
 
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
-                                                <strong>Supllier name</strong>
-                                                <input type="text" name="name"  id="name" class="name form-control" placeholder="supplier name" >
-
+                                                <strong>Supplier name</strong>
+                                                <input type="text" name="name"  id="name" data-ajax-input="name" class="name form-control" value = "{{Request::old('name') ?: ''}}" placeholder="supplier name" >
+                                                @error('mobile_no')
+                                                <span class="form-text text-danger">{{$errors->first('name')}}</span>
+                                                @enderror
                                             </div>
 
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
                                                 <strong>phone number</strong>
-                                                <input type="number" name="mobile_no" id="mobile_no" class="mobile_no form-control" placeholder="phone number" >
-
+                                                <input type="number" name="mobile_no" data-ajax-input="mobile_no" id="mobile_no" value = "{{Request::old('mobile_no') ?: ''}}" class="mobile_no form-control" placeholder="phone number" >
+                                                @error('mobile_no')
+                                                <span class="form-text text-danger">{{$errors->first('mobile_no')}}</span>
+                                                @enderror
                                             </div>
 
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
                                                 <strong>Email</strong>
-                                                <input type="text" name="email" class="email form-control" placeholder="email">
-
+                                                <input type="text" name="email" data-ajax-input="email" value="{{old('email')}}" class="email form-control" placeholder="email">
+                                                <div class="invalid-feedback" data-ajax-feedback = 'email'></div>
                                             </div>
 
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
                                                 <strong>Address</strong>
-                                                <input type="text" name="address" class="address form-control" placeholder="address" >
-
+                                                <input type="text" name="address" value="{{old('address')}}" data-ajax-input="address" class="address form-control" placeholder="address" >
+                                                <div class="invalid-feedback" data-ajax-feedback = 'address'></div>
                                             </div>
 
                                         </div>
 
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                            <button type="submit" class="add_product btn btn-primary">Save</button>
+                                            <button type="submit"  name="submit" id="add" class="add_product btn btn-primary"><i class="fa fa-save" ></i>save</button>
+
                                         </div>
                                     </div>
-
-
-
+                                            </form>
 
                                 </div>
 
@@ -138,7 +143,7 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <ul id="saveform_errList"></ul>
-                        <div id="success_message"></div>
+
 
 
 
@@ -146,7 +151,7 @@
                             <input type="hidden" id="edit_post_id">
                             <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                 <div class="form-group">
-                                    <strong>Supllier name</strong>
+                                    <strong>Supplier name</strong>
                                     <input type="text" name="name"  id="edit_name" class="name form-control" placeholder="supplier name" >
 
                                 </div>
@@ -216,7 +221,7 @@
 
                     <div class="modal-footer tex">
                         <button type="submit" class="add_post btn btn-outline-secondary" data-dismiss="modal">close</button>
-                        <button type="submit" class="delete_post_btn btn btn-primary delete_post_btn">yes delete</button>
+                        <button type="submit" id="delete_post_btn" class="delete_post_btn btn btn-primary delete_post_btn">yes delete</button>
 
                     </div>
 
@@ -296,7 +301,7 @@
                         fetchSupplier();
                         swal.fire(
                             'congratulation!',
-                            'supllier deleted successfully',
+                            'supplier deleted successfully',
                             'success'
                         )
                     }
@@ -394,6 +399,7 @@
             $(document).on('click', '.add_product', function (e){
                 e.preventDefault();
                 // console.log('click');
+
                 var data = {
                     'name' : $('.name').val(),
                     'mobile_no' : $('.mobile_no').val(),
@@ -428,23 +434,107 @@
                         else{
                             $('#saveform_errList').html("");
                             $('#success_message').addClass("alert  alert-success");
+
                             $('#success_message').text(response.message);
                             $('#exampleModalLabel').modal("hide");
                             $('#addModal').find("input").val("");
-                            fetchSupplier();
                             swal.fire(
                                 'congratulation!',
                                 'supplier added successfully',
                                 'success'
                             )
+                            fetchSupplier();
+
+
                         }
 
                     }
                 })
             });
+            // $(document).on('click', '[data-ajax-form]', function (e){
+            //     e.preventDefault();
+            //     // console.log('click');
+            //
+            //     var form = $(this);
+            //     var submit = $(this).find(':submit');
+            //     if(form.data('ajax-form') !== 'submitted'){
+            //         form.attr('.add_product, submitted');
+            //         submit.html('<div class="d-flex align-items-center"><strong>processing</strong><div class="spinner-border ml-auto" role="status" aria-hidden="true"></div></div>')
+            //     }
+            //     // console.log(data);
+            //     $.ajaxSetup({
+            //         headers: {
+            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //         }
+            //     });
+            //
+            //     $.ajax({
+            //         type: "POST",
+            //         url:"/post-supplier/",
+            //         data:data,
+            //         dataType:"json",
+            //
+            //         success: function (response){
+            //             // console.log(response);
+            //             console.log('success');
+            //
+            //         },
+            //         error: function (response){
+            //             $('[data-ajax-input]').removeClass('is-invalid');
+            //             $('[data-ajax-feedback]').html('').addClass('d-block');
+            //
+            //             if (response.responseJson.hasOwnProperty('errors')){
+            //                $.each(response.responseJson.error, function (key, value){
+            //                    $('[data-ajax-input= "'+ key +'"]').addClass('is-invalid');
+            //                    $('[data-ajax-feedback= "'+ key +'"]').html(value[0]).addClass('d-block');
+            //
+            //                })
+            //            }
+            //         }
+            //     })
+            // });
 
 
-        });
+        })
+
+
     </script>
+{{--    <script type="text/javascript">--}}
+{{--        $(document).ready(function (){--}}
+{{--            $('#myForm').validate({--}}
+{{--                rules:{--}}
+{{--                    name:{--}}
+{{--                        required:true,--}}
+{{--                    },--}}
+{{--                    email:{--}}
+{{--                        required:true,--}}
+{{--                    },--}}
+{{--                    mobile_no:{--}}
+{{--                        required:true,--}}
+{{--                    },--}}
+{{--                    address:{--}}
+{{--                        required:true,--}}
+{{--                    },--}}
+{{--                },--}}
+
+{{--                messages:{--}}
+
+{{--                },--}}
+
+{{--                errorElement: 'span',--}}
+{{--                errorPlacement:function (error, element){--}}
+{{--                    error.addClass('invalid-feedback');--}}
+{{--                    element.closest('.form-group').append(error);--}}
+{{--                },--}}
+{{--                highlight:function (element, errorClass, validClass){--}}
+{{--                    $(element).addClass('is-invalid');--}}
+{{--                },--}}
+{{--                unhighlight:function (element, errorClass, validClass){--}}
+{{--                    $(element).removeClass('is-invalid');--}}
+{{--                }--}}
+
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection
 

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Supplier\StoreSupplierRequest;
+use App\Http\Requests\User\StoreUserFormRequest;
 use App\Models\Supplier;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -29,8 +32,21 @@ class SupplierController extends Controller
         //
     }
 
+//    public function store(StoreSupplierRequest $request)
+//    {
+//
+//
+//      $check = Supplier::create($request->validated());
+//      $arr = array('msg' => 'blb bla bl', 'status' => false );
+//     if ($check){
+//         $arr = array('msg' => 'succeccfully', 'status' => true );
+//     }
+//           return Response()->json($arr);
+//    }
     public function store(Request $request)
     {
+
+
         $validator = Validator::make($request->all(),[
 
             'name' => 'required',
@@ -62,6 +78,7 @@ class SupplierController extends Controller
 
 
     }
+
     public function fetchSupplier(){
         $suppliers = Supplier::all();
         return response()->json([
