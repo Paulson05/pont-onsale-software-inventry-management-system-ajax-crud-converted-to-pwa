@@ -210,9 +210,9 @@
                 </li>
 
                 <li >
-                    <a href="forms/validation.html">
-                        <span class="sidebar-mini-icon">V</span>
-                        <span class="sidebar-normal"> Validation Forms </span>
+                    <a href="{{Route('product.barcode')}}">
+                        <span class="sidebar-mini-icon">BC</span>
+                        <span class="sidebar-normal"> Bar code</span>
                     </a>
                 </li>
 
