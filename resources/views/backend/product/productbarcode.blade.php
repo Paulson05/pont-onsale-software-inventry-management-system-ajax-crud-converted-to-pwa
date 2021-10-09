@@ -14,7 +14,7 @@
             <div class="row ">
 
                 @foreach($productBarCode as $product)
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
                                 {!!$product->barcode !!}
