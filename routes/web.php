@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DefaultController;
@@ -48,6 +49,7 @@ Route::get('/qr-code-g', function () {
 Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/barcode', [ProductController::class, 'getProductCode'])->name('product.barcode');
 
+
 Route::post('/post-product', [ProductController::class, 'store']);
 Route::get('/fetch-product', [ProductController::class, 'fetchProduct']);
 Route::get('/edit-product/{id}', [ ProductController::class, 'edit']);
@@ -73,6 +75,10 @@ Route::delete('/delete-category/{id}', [CategoryController::class, 'destroy']);
 
 //supplier
  Route::resource('/supplier',SupplierController::class)->except('create');
+
+ //brand
+Route::resource('/brand',BrandController::class)->except('create');
+
 
 Route::post('/post-supplier', [SupplierController::class, 'store'])->name('supplier.store');
 Route::get('/fetchsupplier', [SupplierController::class, 'fetchsupplier']);

@@ -19,6 +19,7 @@
                             <div class="card-body">
                                 {!!$product->barcode !!}
                                 <h4 class="text-center">{{$product->product_code}}</h4>
+                                <h4 class="text-center">{{$product->name}}</h4>
                             </div>
                         </div>
 

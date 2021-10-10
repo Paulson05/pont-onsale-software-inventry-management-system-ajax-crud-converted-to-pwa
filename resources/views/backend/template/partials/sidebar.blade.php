@@ -201,6 +201,12 @@
                         <span class="sidebar-normal">STOCK Report</span>
                     </a>
                 </li>
+                <li >
+                    <a href="{{route('brand.index')}}">
+                        <span class="sidebar-mini-icon">B</span>
+                        <span class="sidebar-normal">Brand</span>
+                    </a>
+                </li>
 
                 <li >
                     <a href="{{route('supplier.wise.report')}}">
