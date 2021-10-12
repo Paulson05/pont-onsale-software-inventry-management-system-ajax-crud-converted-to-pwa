@@ -1,5 +1,5 @@
 @extends('backend.template.defaults')
-@section('title', '| unit')
+@section('title', '| brand ')
 @section('body')
 <div class="content">
     <div class="container-fluid">
@@ -27,22 +27,34 @@
 
 
 
+                                      <form id="submit" method="post" action="{{route('brand.store')}}">
+                                        @csrf
+                                          <div class="row">
 
-                                <div class="row">
 
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                        <div class="form-group">
-                                            <strong>Brand name</strong>
-                                            <input type="text" name="name"  id="name" class="name form-control" placeholder="supplier name" >
+                                              <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                                                  <div class="form-group">
+                                                      <strong>Brand name</strong>
+                                                      <input type="text" name="name"  id="name" class="name form-control" @error('name'){{"is-invalid"}}@enderror" placeholder="supplier name" value = "{{Request::old('name') ?: ''}}" required>
+                                                      @error('name')
+                                                      <span class="form-text text-danger">{{$errors->first('name')}}</span>
+                                                      @enderror
+                                                  </div>
 
-                                        </div>
+                                              </div>
+                                              <div class="col-xs-12 col-sm-12 col-md-12">
+                                                  <div class="custom-file">
+                                                      <input type="file" name="logo" class="custom-file-input" id="customFileLang" lang="es" required>
+                                                      <label class="custom-file-label" for="customFileLang">Select file</label>
+                                                  </div>
 
-                                    </div>
+                                              </div>
+                                              <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                                                  <button type="submit" id="submit" class="add_unit btn btn-primary">Save</button>
+                                              </div>
+                                          </div>
+                                      </form>
 
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                        <button type="submit" class="add_unit btn btn-primary">Save</button>
-                                    </div>
-                                </div>
 
 
 
@@ -110,22 +122,24 @@
 
 
 
+                 <form id="submit">
+                     <div class="row">
+                         <input type="hidden" id="edit_post_id">
+                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                             <div class="form-group">
+                                 <strong>unit name</strong>
+                                 <input type="text" name="name"  id="edit_name" class="name form-control" placeholder="supplier name" >
 
-                    <div class="row">
-                        <input type="hidden" id="edit_post_id">
-                        <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                            <div class="form-group">
-                                <strong>unit name</strong>
-                                <input type="text" name="name"  id="edit_name" class="name form-control" placeholder="supplier name" >
+                             </div>
 
-                            </div>
+                         </div>
 
-                        </div>
+                         <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                             <button type="submit" class="update_unit btn btn-primary">Update</button>
+                         </div>
+                     </div>
+                 </form>
 
-                        <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                            <button type="submit" class="update_unit btn btn-primary">Update</button>
-                        </div>
-                    </div>
 
 
 
@@ -178,6 +192,28 @@
 </div>
 @endsection
 @section('script')
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="{{asset('/assets/js/plugins/jquery.validate.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function (){
+        $(".submit").validate({
+
+            ignore: [],
+            rules: {
+                name:{
+                    required: true,
+                },
+                customFileLang:{
+                    required: true,
+                },
+            },
+            messages:{
+
+            },
+        })
+    });
+</script>
 <script>
     $(document).ready(function () {
         fetchunit();
@@ -317,7 +353,7 @@
                         fetchunit();
                         swal.fire(
                             'congratulation!',
-                            'unit updated successfully',
+                            'brand updated successfully',
                             'success'
                         )
                     }
@@ -336,9 +372,9 @@
             // console.log('click');
             var data = {
                 'name' : $('.name').val(),
-
+                'logo' : $('.custom-file-input').val(),
             }
-            // console.log(data);
+            console.log(data);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -347,7 +383,7 @@
 
             $.ajax({
                 type: "POST",
-                url:"/post-unit/",
+                url:"{{route('brand.store')}}",
                 data:data,
                 dataType:"json",
 
@@ -370,7 +406,7 @@
                         fetchunit();
                         swal.fire(
                             'congratulation!',
-                            'unit added successfully',
+                            'brand added successfully',
                             'success'
                         )
                     }

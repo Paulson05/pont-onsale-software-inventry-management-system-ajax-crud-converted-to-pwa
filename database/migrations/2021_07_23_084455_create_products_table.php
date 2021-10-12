@@ -17,9 +17,12 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('suppliers_id');
             $table->integer('unit_id');
+            $table->integer('brand_id')->nullable();
             $table->integer('category_id')->nullable();
             $table->string('name');
+            $table->string('photo')->nullable();
             $table->string('product_code')->nullable();
+            $table->string('qr_code')->nullable();
             $table->longText('barcode')->nullable();
             $table->integer('quantity')->default('0');
             $table->integer('alert_stock')->default('100');

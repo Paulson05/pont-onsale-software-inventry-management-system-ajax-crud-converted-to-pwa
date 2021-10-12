@@ -14,6 +14,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
+use LaravelQRCode\Facades\QRCode;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,9 @@ Route::get('/qr-code-g', function () {
 
 });
 
-
+        Route::get('qr-code/example/text', function (){
+           return QRCode::text('Laravel QR code Generator!')->png();
+        });
 
 //product
 Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');

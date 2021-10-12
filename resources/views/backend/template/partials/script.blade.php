@@ -5,8 +5,8 @@
 
 
 <script src="{{asset('/assets/js/core/bootstrap.min.js')}}" ></script>
-
-
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
 <script src="{{asset('/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}" ></script>
 
 <script src="{{asset('/assets/js/plugins/moment.min.js')}}"></script>
@@ -35,7 +35,7 @@
 <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
 <script src="{{asset('/assets/js/plugins/jquery.dataTables.min.js')}}"></script>
 
-<!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+script<!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
 <script src="{{asset('/assets/js/plugins/bootstrap-tagsinput.js')}}"></script>
 
 <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->

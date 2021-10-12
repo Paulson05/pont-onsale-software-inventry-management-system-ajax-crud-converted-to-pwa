@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use LaravelQRCode\Facades\QRCode;
 use Picqer;
 class ProductController extends Controller
 {
@@ -52,8 +53,15 @@ class ProductController extends Controller
         }else{
             $product_code = rand(106890128, 100000000);
             $redColor = '255, 0, 0';
-            $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-            $barcodes =  $generator->getBarcode($product_code,  $generator::TYPE_STANDARD_2_5, 2, 60);
+            $qrcode  = $request->qrcode;
+
+          $file =   file_put_contents('product/qrcode/' .$product_code . '.png',
+            $qrcode =    QRCode::text("message")->setSize(4)->setMargin(2)->setOutfile('$file')->png());
+            $qrcode  = $request->qrcode;
+
+            $generator = new Picqer\Barcode\BarcodeGeneratorJPG();
+            file_put_contents('product/barcodes/' .$product_code . '.jpg',
+            $barcodes =  $generator->getBarcode($product_code,  $generator::TYPE_STANDARD_2_5, 2, 60));
             $product = new Product();
             $product->suppliers_id = $request->suppliers_id;
             $product->name = $request->name;
@@ -61,7 +69,7 @@ class ProductController extends Controller
             $product->alert_stock = $request->alert_stock;
             $product->unit_id = $request->unit_id;
             $product->product_code = $product_code;
-            $product->barcode = $barcodes;
+            $product->barcode = $product_code . '.jpg';
             $product->category_id = $request->category_id;
 //        $supplier->created_by = Auth::user()->id;
 
@@ -131,7 +139,7 @@ class ProductController extends Controller
 
     public function getProductCode(){
         $productBarCode = Product::select('name','barcode','product_code', )->get();
-   
+
         return view('backend.product.productbarcode')->with([
             'productBarCode' =>  $productBarCode
         ]);

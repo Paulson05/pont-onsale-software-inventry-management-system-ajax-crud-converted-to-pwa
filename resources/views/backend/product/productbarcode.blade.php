@@ -13,18 +13,19 @@
 
             <div class="row ">
 
-                @foreach($productBarCode as $product)
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                {!!$product->barcode !!}
-                                <h4 class="text-center">{{$product->product_code}}</h4>
-                                <h4 class="text-center">{{$product->name}}</h4>
-                            </div>
-                        </div>
-
-                    </div>
-                @endforeach
+<!--                @foreach($productBarCode as $product)-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-body">-->
+<!--                                {!!$product->barcode !!}-->
+<!--                                <h4 class="text-center">{{$product->product_code}}</h4>-->
+<!--                                <h4 class="text-center">{{$product->name}}</h4>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!--                    </div>-->
+<!--                @endforeach-->
+                <img src="product/qrcode/104884914.png">
 
             </div>
 

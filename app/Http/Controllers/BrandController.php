@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BrandController extends Controller
 {
@@ -35,7 +36,43 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validator = Validator::make($request->all(),[
+
+            'name' => 'required',
+            'logo' => 'required',
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->messages(),
+            ]);
+        }
+        else{
+            $array = new Brand();
+            $array->heading =$request->input('name');
+
+            if ( $request->hasfile('logo')){
+                $file  =$request->file('logo');
+                $extension = $file->getClientOriginalExtension();
+                $filename =    time() . '.' .$extension;
+                $file->move('upload/images', $filename);
+
+                $array->logo = $filename;
+
+            }
+            else{
+                return $request;
+                $array->logo = '';
+            }
+            $array->save();
+            return response()->json([
+                'status' => 200,
+                'message' => 'post added successfully',
+
+            ]);
+        }
     }
 
     /**

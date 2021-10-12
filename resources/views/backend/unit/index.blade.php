@@ -202,7 +202,7 @@
                 })
             }
 
-            {{--delete--}}
+
             $(document).on('click', '.delete_post', function (e){
                 e.preventDefault();
 
@@ -246,7 +246,7 @@
 
             });
 
-            {{--edit--}}
+
             $(document).on('click', '.edit_unit', function (e){
                 e.preventDefault();
                 let post_id  = $(this).val();
@@ -275,7 +275,7 @@
 
 
             });
-            {{--update--}}
+
             $(document).on('click', '.update_unit', function (e){
                 e.preventDefault();
 
@@ -328,7 +328,7 @@
             });
 
 
-            {{--add post--}}
+
 
 
             $(document).on('click', '.add_unit', function (e){

@@ -50,6 +50,14 @@
                                             </div>
 
                                         </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6 text-left ">
+                                            <div class="form-group">
+                                                <strong>photo</strong>
+                                                <input type="file" name="photo"   id="alert_stock" class="fileform-control " placeholder="photo" >
+
+                                            </div>
+
+                                        </div>
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
                                                 <strong>Category</strong>
@@ -321,6 +329,7 @@
                 // console.log('click');
                 var data = {
                     'name' : $('.name').val(),
+                    'photo' : $('.photo').val(),
                     'suppliers_id' : $('#suppliers_id').val(),
                     'unit_id' : $('#unit_id').val(),
                     'alert_stock' : $('#alert_stock').val(),
