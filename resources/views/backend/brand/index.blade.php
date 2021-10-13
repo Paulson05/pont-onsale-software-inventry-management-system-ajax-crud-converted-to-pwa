@@ -24,21 +24,18 @@
                             <!-- Modal body -->
                             <div class="modal-body">
 
+                                <ul class="pl-3 text-center list-unstyled" id="saveform_errList"></ul>
 
 
-
-                                      <form id="submit" method="post" action="{{route('brand.store')}}">
+                                      <form id="LoginValidation"  method="post" action="{{route('brand.store')}}">
                                         @csrf
                                           <div class="row">
 
 
                                               <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                                  <div class="form-group">
+                                                  <div class="form-group has-label">
                                                       <strong>Brand name</strong>
-                                                      <input type="text" name="name"  id="name" class="name form-control" @error('name'){{"is-invalid"}}@enderror" placeholder="supplier name" value = "{{Request::old('name') ?: ''}}" required>
-                                                      @error('name')
-                                                      <span class="form-text text-danger">{{$errors->first('name')}}</span>
-                                                      @enderror
+                                                      <input type="text" name="name"  id="name" class="name form-control"  placeholder="supplier name" value = "{{Request::old('name') ?: ''}}" required="true">
                                                   </div>
 
                                               </div>
@@ -196,23 +193,30 @@
 <script src="{{asset('/assets/js/plugins/jquery.validate.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    $(document).ready(function (){
-        $(".submit").validate({
-
-            ignore: [],
-            rules: {
-                name:{
-                    required: true,
-                },
-                customFileLang:{
-                    required: true,
-                },
+    <script>
+        function setFormValidation(id){
+        $(id).validate({
+            highlight: function(element) {
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
+                $(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
             },
-            messages:{
-
+            success: function(element) {
+                $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+                $(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
             },
-        })
+            errorPlacement : function(error, element) {
+                $(element).append(error);
+            },
+        });
+    }
+
+        $(document).ready(function() {
+        setFormValidation('#RegisterValidation');
+        setFormValidation('#TypeValidation');
+        setFormValidation('#LoginValidation');
+        setFormValidation('#RangeValidation');
     });
+</script>
 </script>
 <script>
     $(document).ready(function () {
@@ -402,6 +406,7 @@
                         $('#success_message').addClass("alert  alert-success");
                         $('#success_message').text(response.message);
                         $('#addModal').modal("hide");
+                        $('#saveform_errList').html("");
                         $('#addModal').find("input").val("");
                         fetchunit();
                         swal.fire(

@@ -61,13 +61,10 @@ class SupplierController extends Controller
                 'errors' => $validator->messages(),
             ]);
         }else{
-            $supplier = new Supplier();
-            $supplier->name = $request->name;
-            $supplier->email = $request->email;
-            $supplier->mobile_no= $request->mobile_no;
-            $supplier->address = $request->address;
+
+            $post = Supplier::create(collect($request->only(['name','email','mobile_no','address']))->all());
+            $status =    $post->save();
 //        $supplier->created_by = Auth::user()->id;
-            $supplier->save();
 
             return response()->json([
                 'status' => 200,

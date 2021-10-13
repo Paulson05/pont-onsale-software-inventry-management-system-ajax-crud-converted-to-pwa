@@ -76,15 +76,33 @@ public function paidCustomer(){
     }
 
 
-    public function store(CustomerFormRequest $request)
+    public function store(Request $request)
     {
+        $validator = Validator::make($request->all(),[
 
-            Customer::create($request->validated());
+            'name' => 'required',
+            'email'=>  'required',
+            'mobile_no' => 'required',
+            'address' => 'required',
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->messages(),
+            ]);
+        }else{
+
+            $post = Customer::create(collect($request->only(['name','email','mobile_no','address']))->all());
+            $status =    $post->save();
+//        $supplier->created_by = Auth::user()->id;
+
             return response()->json([
                 'status' => 200,
                 'message' => 'post added successfully',
 
             ]);
+        }
 
     }
 

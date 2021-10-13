@@ -258,7 +258,7 @@
                 })
             }
 
-            {{--delete--}}
+
             $(document).on('click', '.delete_post', function (e){
                 e.preventDefault();
 
@@ -302,7 +302,7 @@
 
             });
 
-            {{--edit--}}
+
             $(document).on('click', '.edit_customer', function (e){
                 e.preventDefault();
                 let post_id  = $(this).val();
@@ -333,7 +333,7 @@
 
 
             });
-            {{--update--}}
+
             $(document).on('click', '.update_customer', function (e){
                 e.preventDefault();
 
@@ -388,7 +388,7 @@
             });
 
 
-            {{--add post--}}
+
 
 
             $(document).on('click', '.add_customer', function (e){

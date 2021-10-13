@@ -36,8 +36,8 @@
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
                                                 <strong>Supplier name</strong>
-                                                <input type="text" name="name"  id="name" data-ajax-input="name" class="name form-control" value = "{{Request::old('name') ?: ''}}" placeholder="supplier name" >
-                                                @error('mobile_no')
+                                                <input type="text" name="name"  id="name" data-ajax-input="name" class="name form-control @error('name'){{"is-invalid"}}@enderror" value = "{{Request::old('name') ?: ''}}" placeholder="supplier name" >
+                                                @error('name')
                                                 <span class="form-text text-danger">{{$errors->first('name')}}</span>
                                                 @enderror
                                             </div>
@@ -46,7 +46,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-6 text-left">
                                             <div class="form-group">
                                                 <strong>phone number</strong>
-                                                <input type="number" name="mobile_no" data-ajax-input="mobile_no" id="mobile_no" value = "{{Request::old('mobile_no') ?: ''}}" class="mobile_no form-control" placeholder="phone number" >
+                                                <input type="number" name="mobile_no" data-ajax-input="mobile_no" id="mobile_no" value = "{{Request::old('mobile_no') ?: ''}}" class="mobile_no form-control  @error('mobile_no'){{"is-invalid"}}@enderror" placeholder="phone number" >
                                                 @error('mobile_no')
                                                 <span class="form-text text-danger">{{$errors->first('mobile_no')}}</span>
                                                 @enderror
@@ -147,46 +147,51 @@
 
 
 
-                        <div class="row">
-                            <input type="hidden" id="edit_post_id">
-                            <div class="col-xs-12 col-sm-12 col-md-6 text-left">
-                                <div class="form-group">
-                                    <strong>Supplier name</strong>
-                                    <input type="text" name="name"  id="edit_name" class="name form-control" placeholder="supplier name" >
+                       <form method="post" action="{{route('supplier.store')}}">
+                           @csrf
+                           <div class="row">
+                               <input type="hidden" id="edit_post_id">
+                               <div class="col-xs-12 col-sm-12 col-md-6 text-left">
+                                   <div class="form-group">
+                                       <strong>Supplier name</strong>
+                                       <input type="text" name="name" @error('name'){{"is-invalid"}}@enderror"  id="edit_name" class="name form-control" placeholder="supplier name" value = "{{Request::old('first_name') ?: ''}}" >
+                                       @error('name')
+                                       <span class="form-text text-danger">{{$errors->first('name')}}</span>
+                                       @enderror
+                                   </div>
 
-                                </div>
+                               </div>
+                               <div class="col-xs-12 col-sm-12 col-md-6 text-left">
+                                   <div class="form-group">
+                                       <strong>phone number</strong>
+                                       <input type="number" name="mobile_no" id="edit_mobile_no" class="mobile_no form-control" placeholder="phone number" >
 
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6 text-left">
-                                <div class="form-group">
-                                    <strong>phone number</strong>
-                                    <input type="number" name="mobile_no" id="edit_mobile_no" class="mobile_no form-control" placeholder="phone number" >
+                                   </div>
 
-                                </div>
+                               </div>
+                               <div class="col-xs-12 col-sm-12 col-md-6 text-left">
+                                   <div class="form-group">
+                                       <strong>Email</strong>
+                                       <input type="text" name="email" id="email" class="email form-control" placeholder="email">
 
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6 text-left">
-                                <div class="form-group">
-                                    <strong>Email</strong>
-                                    <input type="text" name="email" id="email" class="email form-control" placeholder="email">
+                                   </div>
 
-                                </div>
+                               </div>
+                               <div class="col-xs-12 col-sm-12 col-md-6 text-left">
+                                   <div class="form-group">
+                                       <strong>Address</strong>
+                                       <input type="text" name="address" id="address" class="address form-control" placeholder="address" >
 
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6 text-left">
-                                <div class="form-group">
-                                    <strong>Address</strong>
-                                    <input type="text" name="address" id="address" class="address form-control" placeholder="address" >
+                                   </div>
 
-                                </div>
+                               </div>
 
-                            </div>
+                               <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                                   <button type="submit" class="update_supplier btn btn-primary">update</button>
+                               </div>
+                           </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                <button type="submit" class="update_supplier btn btn-primary">update</button>
-                            </div>
-                        </div>
-
+                       </form>
 
 
 
@@ -266,7 +271,7 @@
                 })
             }
 
-            {{--delete--}}
+
             $(document).on('click', '.delete_post', function (e){
                 e.preventDefault();
 
@@ -310,7 +315,7 @@
 
             });
 
-            {{--edit--}}
+
             $(document).on('click', '.edit_btn', function (e){
                 e.preventDefault();
                 let post_id  = $(this).val();
@@ -343,7 +348,7 @@
 
 
             });
-            {{--update--}}
+
             $(document).on('click', '.update_supplier', function (e){
                 e.preventDefault();
 
@@ -393,7 +398,7 @@
             });
 
 
-            {{--add post--}}
+
 
 
             $(document).on('click', '.add_product', function (e){
