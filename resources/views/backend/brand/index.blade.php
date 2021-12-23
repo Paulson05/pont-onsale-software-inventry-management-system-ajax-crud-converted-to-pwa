@@ -27,7 +27,7 @@
                                 <ul class="pl-3 text-center list-unstyled" id="saveform_errList"></ul>
 
 
-                                      <form id="LoginValidation"  method="post" action="{{route('brand.store')}}">
+                                      <form id="LoginValidation"  method="post" action="{{route('brand.store')}}" enctype="multipart/form-data">
                                         @csrf
                                           <div class="row">
 
@@ -35,14 +35,14 @@
                                               <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                                                   <div class="form-group has-label">
                                                       <strong>Brand name</strong>
-                                                      <input type="text" name="name"  id="name" class="name form-control"  placeholder="supplier name" value = "{{Request::old('name') ?: ''}}" required="true">
+                                                      <input type="text" name="name"  id="name" class="name form-control"  placeholder="brand name" value = "{{Request::old('name') ?: ''}}" required="true">
                                                   </div>
 
                                               </div>
                                               <div class="col-xs-12 col-sm-12 col-md-12">
-                                                  <div class="custom-file">
-                                                      <input type="file" name="logo" class="custom-file-input" id="customFileLang" lang="es" required>
-                                                      <label class="custom-file-label" for="customFileLang">Select file</label>
+
+                                                   <input type="file" name="image" class="image form-control" placeholder="upload">
+
                                                   </div>
 
                                               </div>
@@ -51,10 +51,6 @@
                                               </div>
                                           </div>
                                       </form>
-
-
-
-
 
                             </div>
 
@@ -376,7 +372,7 @@
             // console.log('click');
             var data = {
                 'name' : $('.name').val(),
-                'logo' : $('.custom-file-input').val(),
+                'image' : $('.image').val(),
             }
             console.log(data);
             $.ajaxSetup({
@@ -390,6 +386,7 @@
                 url:"{{route('brand.store')}}",
                 data:data,
                 dataType:"json",
+                datType: "image/jpeg",
 
                 success: function (response){
                     // console.log(response);

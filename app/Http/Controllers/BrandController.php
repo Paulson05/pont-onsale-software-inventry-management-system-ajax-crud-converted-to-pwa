@@ -36,12 +36,11 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-
+          dd($request->all());
         $validator = Validator::make($request->all(),[
 
             'name' => 'required',
-            'logo' => 'required',
-
+            'image' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -50,30 +49,30 @@ class BrandController extends Controller
             ]);
         }
         else{
-            $array = new Brand();
-            $array->heading =$request->input('name');
-
-            if ( $request->hasfile('logo')){
-                $file  =$request->file('logo');
+            if ( $request->hasfile('image')){
+                $file  =$request->file('image');
                 $extension = $file->getClientOriginalExtension();
                 $filename =    time() . '.' .$extension;
                 $file->move('upload/images', $filename);
 
-                $array->logo = $filename;
+            }
+            else {
+                $filename='';
+            }
 
-            }
-            else{
-                return $request;
-                $array->logo = '';
-            }
-            $array->save();
+
+            $post = Brand::create(collect($request->only(['name']))->put('image',$filename)->all());
+            $post->save();
             return response()->json([
                 'status' => 200,
                 'message' => 'post added successfully',
 
             ]);
         }
+
+
     }
+
 
     /**
      * Display the specified resource.

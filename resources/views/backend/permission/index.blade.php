@@ -99,7 +99,7 @@
 
             </div>
         </div>
-        {{--edit modal --}}
+
         <div  class="modal  fade pt-5" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
 
             <div class="modal-dialog modal-lg">
@@ -209,7 +209,7 @@
                 })
             }
 
-            {{--delete--}}
+
             $(document).on('click', '.delete_post', function (e){
                 e.preventDefault();
 
@@ -253,7 +253,7 @@
 
             });
 
-            {{--edit--}}
+
             $(document).on('click', '.edit_unit', function (e){
                 e.preventDefault();
                 let post_id  = $(this).val();
@@ -282,7 +282,7 @@
 
 
             });
-            {{--update--}}
+
             $(document).on('click', '.update_unit', function (e){
                 e.preventDefault();
 
@@ -335,7 +335,7 @@
             });
 
 
-            {{--add post--}}
+
 
 
             $(document).on('click', '.add_unit', function (e){

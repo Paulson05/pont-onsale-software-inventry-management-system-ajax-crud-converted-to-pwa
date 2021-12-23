@@ -1,5 +1,5 @@
 @extends('backend.template.defaults')
-@section('title', '| purchase list')
+@section('title', '| pending purchase')
 @section('body')
     <div class="content">
         <div class="container-fluid">
@@ -256,7 +256,7 @@
                                     </tr>
                                     </thead>
                                           @php
-                                          $purchases  = \App\Models\Purchase::orderBy('date', 'desc')->orderby('id', 'desc')->where('status', '0')->get();
+                                          $purchases  = \App\Models\Purchase::orderBy('date', 'desc')->orderby('id', 'desc')->where('status', '1')->get();
                                           @endphp
                                     <tbody>
 

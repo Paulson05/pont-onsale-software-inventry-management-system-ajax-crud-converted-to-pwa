@@ -307,7 +307,7 @@
         <input type="number"  class="form-control form-control-sm text-right buying_price"  name="buying_price[]" value="0" readonly>
 
     </td>
-    <td><i class="btn btn-danger fa fa-window-close removeeventmore">x</i></td>
+    <td><i class="btn btn-danger fa fa-window-close removeeventmore"></i></td>
 </tr>
     </script>
     <script>

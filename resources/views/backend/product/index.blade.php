@@ -106,16 +106,7 @@
                                                     $suppliers = \App\Models\Supplier::all();
                                                 @endphp
                                                 <strong>Supplier</strong>
-                                                <select name="suppliers_id" id="suppliers_id" class="suppliers_id form-control" data-title="Single Select" data-style="btn-default btn-outline" data-menu-style="dropdown-blue">
-                                                    <option>--select supplier--</option>
-                                                    @forelse($suppliers as $supplier)
 
-                                                        <option value="{{$supplier->id}}">{{$supplier->name}}</option>
-                                                    @empty
-                                                        <option value="is">no supplier</option>
-
-                                                    @endforelse
-                                                </select>
 
                                             </div>
                                         </div>
