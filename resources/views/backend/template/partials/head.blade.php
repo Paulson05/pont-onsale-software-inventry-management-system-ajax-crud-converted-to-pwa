@@ -60,12 +60,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!-- CSS Files -->
 
-<link href="{{asset('/assets/css/bootstrap.min.css')}}" rel="stylesheet" />
+<link href="{{secure_asset('/assets/css/bootstrap.min.css')}}" rel="stylesheet" />
 
 
 
 
-<link href="{{asset('/assets/css/now-ui-dashboard.minaa26.css?v=1.5.0')}}" rel="stylesheet" />
+<link href="{{secure_asset('/assets/css/now-ui-dashboard.minaa26.css?v=1.5.0')}}" rel="stylesheet" />
 
 
 
@@ -76,7 +76,7 @@
 
 
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="../assets/demo/demo.css" rel="stylesheet" />
+<link href="{{secure_assset('/assets/demo/demo.css') }}" rel="stylesheet" />
 
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <!-- Google Tag Manager -->

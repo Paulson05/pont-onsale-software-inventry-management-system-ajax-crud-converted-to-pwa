@@ -1,27 +1,27 @@
 
 <!--   Core JS Files   -->
-<script src="{{asset('/assets/js/core/jquery.min.js')}}" ></script>
-<script src="{{asset('/assets/js/core/popper.min.js')}}" ></script>
+<script src="{{secure_asset('/assets/js/core/jquery.min.js')}}" ></script>
+<script src="{{secure_asset('/assets/js/core/popper.min.js')}}" ></script>
 
 
-<script src="{{asset('/assets/js/core/bootstrap.min.js')}}" ></script>
+<script src="{{secure_asset('/assets/js/core/bootstrap.min.js')}}" ></script>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
-<script src="{{asset('/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}" ></script>
+<script src="{{secure_asset('/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}" ></script>
 
-<script src="{{asset('/assets/js/plugins/moment.min.js')}}"></script>
+<script src="{{secure_asset('/assets/js/plugins/moment.min.js')}}"></script>
 
-<script src="{{asset('assets/js/handlebar.min.js')}}"></script>
+<script src="{{secure_asset('assets/js/handlebar.min.js')}}"></script>
 
 
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="{{asset('/assets/js/plugins/bootstrap-switch.js')}}"></script>
+<script src="{{secure_asset('/assets/js/plugins/bootstrap-switch.js')}}"></script>
 
 <!--  Plugin for Sweet Alert -->
-<script src="{{asset('/assets/js/plugins/sweetalert2.min.js')}}"></script>
+<script src="{{secure_asset('/assets/js/plugins/sweetalert2.min.js')}}"></script>
 
 <!-- Forms Validations Plugin -->
-<script src="{{asset('/assets/js/plugins/jquery.validate.min.js')}}"></script>
+<script src="{{secure_asset('/assets/js/plugins/jquery.validate.min.js')}}"></script>
 
 <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
 <script src="{{asset('/assets/js/plugins/jquery.bootstrap-wizard.js')}}"></script>
@@ -331,5 +331,5 @@ script<!--	Plugin for Tags, full documentation here: https://github.com/bootstra
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-<script src="{{asset('/assets/js/app.js')}}" ></script>
+<script src="{{secure_asset('/assets/js/app.js')}}" ></script>
 @yield('script')
