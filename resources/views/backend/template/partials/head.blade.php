@@ -76,7 +76,7 @@
 
 
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="{{secure_assset('/assets/demo/demo.css') }}" rel="stylesheet" />
+<link href="{{secure_asset('/assets/demo/demo.css') }}" rel="stylesheet" />
 
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <!-- Google Tag Manager -->
